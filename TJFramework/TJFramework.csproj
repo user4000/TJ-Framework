@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9383CC68-1FD2-4AF0-A09F-BC864EC09F51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TJFramework</RootNamespace>
+    <AssemblyName>TJFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\Output\TJFramework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\PROJECT_TJ_FRAMEWORK\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog">
+      <HintPath>C:\PROJECT_TJ_FRAMEWORK\Serilog.2.7.1\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Settings.Configuration">
+      <HintPath>C:\PROJECT_TJ_FRAMEWORK\Serilog.Settings.Configuration.2.6.1\lib\net451\Serilog.Settings.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File">
+      <HintPath>C:\PROJECT_TJ_FRAMEWORK\Serilog.Sinks.File.4.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PRG\Telerik\Bin40\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PRG\Telerik\Bin40\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PRG\Telerik\Bin40\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PRG\Telerik\Bin40\TelerikCommon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TJMessageManager.cs" />
+    <Compile Include="TJFrameworkManager.cs" />
+    <Compile Include="TJPageView.cs" />
+    <Compile Include="TJService.cs" />
+    <Compile Include="TJ_Alert\TJAlert.cs" />
+    <Compile Include="TJ_Alert\TJAlertPainter.cs" />
+    <Compile Include="TJ_Alert\TJAlertService.cs" />
+    <Compile Include="TJ_Grid\TTGridWithDataTable.cs" />
+    <Compile Include="TJ_Model\MxMessageLog.cs" />
+    <Compile Include="TJ_Model\MxSimpleEntity.cs" />
+    <Compile Include="TJ_Standard\IMessageSubsystem.cs" />
+    <Compile Include="TJ_Standard\TJMessage.cs" />
+    <Compile Include="TJ_Standard\TJProcess.cs" />
+    <Compile Include="TJ_Standard\TTStandard.cs" />
+    <Compile Include="TJ_Standard\TTString.cs" />
+    <Compile Include="TJ_Extension\XxDataColumnChangeEventArgs.cs" />
+    <Compile Include="TJ_Extension\XxDataTable.cs" />
+    <Compile Include="TJ_Extension\XxEncoding.cs" />
+    <Compile Include="TJ_Extension\XxGridViewDataColumn.cs" />
+    <Compile Include="TJ_Extension\XxGridViewRowInfo.cs" />
+    <Compile Include="TJ_Extension\XxIListGeneric.cs" />
+    <Compile Include="TJ_Extension\XxIListReturnCode.cs" />
+    <Compile Include="TJ_Extension\XxRadButton.cs" />
+    <Compile Include="TJ_Extension\XxRadDateTimePicker.cs" />
+    <Compile Include="TJ_Extension\XxRadDropDownList.cs" />
+    <Compile Include="TJ_Extension\XxRadDropDownListClassificatorStandard.cs" />
+    <Compile Include="TJ_Extension\XxRadGridView.cs" />
+    <Compile Include="TJ_Extension\XxRadPanel.cs" />
+    <Compile Include="TJ_Extension\XxRadTextBox.cs" />
+    <Compile Include="TJ_Extension\XxRadTextBoxControl.cs" />
+    <Compile Include="TJ_Extension\XxString.cs" />
+    <Compile Include="TJ_Form\AxLog.cs" />
+    <Compile Include="TJ_Form\FxExit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TJ_Form\FxExit.Designer.cs">
+      <DependentUpon>FxExit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TJ_Form\FxLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TJ_Form\FxLog.Designer.cs">
+      <DependentUpon>FxLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TJ_Form\FxMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TJ_Form\FxMain.Designer.cs">
+      <DependentUpon>FxMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TJ_Form\FxSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TJ_Form\FxSettings.Designer.cs">
+      <DependentUpon>FxSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TJ_Form\TJChildForm.cs" />
+    <Compile Include="TJ_Grid\TJGridManager.cs" />
+    <Compile Include="TJ_Logger\TJLogger.cs" />
+    <Compile Include="TJ_Logger\TJLoggerConfiguration.cs" />
+    <Compile Include="TJ_Logger\TJLoggerDefaultConfiguration.cs" />
+    <Compile Include="TJ_Logger\TJLoggerSubsystemManager.cs" />
+    <Compile Include="TJ_Settings\TJStandardApplicationSettings.cs" />
+    <Compile Include="TJ_Settings\TJStandardFrameworkSettings.cs" />
+    <Compile Include="TJ_Settings\TJStandardJSONSettings.cs" />
+    <Compile Include="TJ_Settings\TJStandardUserSettingsLoader.cs" />
+    <Compile Include="TJ_Standard\IEventEndWork.cs" />
+    <Compile Include="TJ_Standard\IEventStartWork.cs" />
+    <Compile Include="TJ_Standard\ILoggerSubsystem.cs" />
+    <Compile Include="TJ_Standard\MsgPos.cs" />
+    <Compile Include="TJ_Standard\MsgType.cs" />
+    <Compile Include="TJ_Standard\TJConvert.cs" />
+    <Compile Include="TJ_Standard\TJStandardJsonSerializerSetting.cs" />
+    <Compile Include="TJ_Standard\TJTool.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="TJ_Form\FxExit.resx">
+      <DependentUpon>FxExit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TJ_Form\FxLog.resx">
+      <DependentUpon>FxLog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TJ_Form\FxMain.resx">
+      <DependentUpon>FxMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TJ_Form\FxSettings.resx">
+      <DependentUpon>FxSettings.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
