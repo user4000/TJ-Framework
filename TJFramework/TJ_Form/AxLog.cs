@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using TJFramework.Extensions;
+using TJFramework.Standard;
 using static TJFramework.Logger.Manager;
 using static TJFramework.TJFrameworkManager;
 
@@ -11,9 +13,9 @@ namespace TJFramework.Form
 {
   internal class AxLog : TJGridWithDataTable
   {
-    public int CountRow { get; private set; } = 0;
+    internal int CountRow { get; private set; } = 0;
 
-    public int MaxCountRow { get; } = 10000;
+    internal int MaxCountRow { get; } = 10000;
 
     private int DeltaWidth { get; } = -20;
 
@@ -184,7 +186,7 @@ namespace TJFramework.Form
       for (int i = 0; i < messages; i++) TestAddOneRowToTable();
     }
 
-    public override void SetDataViewControlProperties()
+    internal override void SetDataViewControlProperties()
     {
       CreateColumns();
       Grid.ReadOnly = true;
@@ -367,7 +369,6 @@ namespace TJFramework.Form
     }
   }
 }
-
 
 /*
     internal void AddOneRow(byte NxByte, string StHeader, string StText)

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace TJFramework
+namespace TJFramework.Standard
 {
   public class TJConvert
   {

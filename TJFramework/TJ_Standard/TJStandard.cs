@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace TJFramework
+namespace TJFramework.Standard
 {
   public static class TJStandard
   {

@@ -7,30 +7,31 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Themes;
+using TJFramework.Extensions;
 
-namespace TJFramework
+namespace TJFramework.Standard
 {
-  public abstract class TJGridManager
+  internal abstract class TJGridManager
   {
-    public static int DefaultRowCountOfDropDownList { get; } = 10;
-    public static int OneRowHeightOfDropDownList { get; } = 25;
-    public static int MinimumDropDownWidth { get; } = 300;
-    public static int MaximumDropDownHeight { get; } = 200;
+    internal static int DefaultRowCountOfDropDownList { get; } = 10;
+    internal static int OneRowHeightOfDropDownList { get; } = 25;
+    internal static int MinimumDropDownWidth { get; } = 300;
+    internal static int MaximumDropDownHeight { get; } = 200;
 
     //public static VisualStudio2012LightTheme ThemeForGrid { get; } = new VisualStudio2012LightTheme();
 
-    public static Color ColorRow { get; } = Color.WhiteSmoke;
-    public HashSet<string> NonemptyColumns { get; } = new HashSet<string>(); // Список столбцов которые не допускают вставку пустых значений //
+    internal static Color ColorRow { get; } = Color.WhiteSmoke;
+    internal HashSet<string> NonemptyColumns { get; } = new HashSet<string>(); // Список столбцов которые не допускают вставку пустых значений //
 
-    public bool IsColumnSettingsApplied { get; set; } = false;
+    internal bool IsColumnSettingsApplied { get; set; } = false;
 
-    public RadGridView Grid { get; set; } = null;
+    internal RadGridView Grid { get; set; } = null;
 
-    public MasterGridViewTemplate MGridViewTemplate { get; set; } = null;
+    internal MasterGridViewTemplate MGridViewTemplate { get; set; } = null;
 
     //public void SetThemeForGrid() => Grid.ThemeName = ThemeForGrid.ThemeName;
 
-    public virtual void InitializeGrid(RadGridView grid, bool SetAnotherTheme = false)
+    internal virtual void InitializeGrid(RadGridView grid, bool SetAnotherTheme = false)
     {
       Grid = grid;
       //if (SetAnotherTheme) Grid.ThemeName = ThemeForGrid.ThemeName;
@@ -42,22 +43,22 @@ namespace TJFramework
       //Grid.CellFormatting += new CellFormattingEventHandler(EventCellFormatting);
     }
 
-    public string GetStringValue(string FieldName) => Grid.ZzGetStringValueByFieldName(FieldName);
+    internal string GetStringValue(string FieldName) => Grid.ZzGetStringValueByFieldName(FieldName);
 
-    public void MarkAsNonEmpty(GridViewDataColumn dc) => NonemptyColumns.Add(dc.FieldName);
+    internal void MarkAsNonEmpty(GridViewDataColumn dc) => NonemptyColumns.Add(dc.FieldName);
 
-    public bool ColumnCannotBeEmpty(string ColumnName) => NonemptyColumns.Contains(ColumnName);
+    internal bool ColumnCannotBeEmpty(string ColumnName) => NonemptyColumns.Contains(ColumnName);
 
-    public abstract void SetDataViewControlProperties();
+    internal abstract void SetDataViewControlProperties();
 
-    public int GetSummaryVisibleColumnsWidth()
+    internal int GetSummaryVisibleColumnsWidth()
     {
       int SumWidth = 0;
       foreach (GridViewDataColumn GvDataColumn in Grid.Columns) if (GvDataColumn.IsVisible) SumWidth += GvDataColumn.Width;
       return SumWidth;
     }
 
-    public void TryToIncreaseColumnsWidthProportionally()
+    internal void TryToIncreaseColumnsWidthProportionally()
     {
       int SumWidth = GetSummaryVisibleColumnsWidth();
       int Dx = Grid.Width - SumWidth - 30;
@@ -66,7 +67,7 @@ namespace TJFramework
           if (GvDataColumn.IsVisible) GvDataColumn.Width += (int)(Dx * (1f * (GvDataColumn.Width) / (SumWidth)));
     }
 
-    public void SetGridFont(Font font)
+    internal void SetGridFont(Font font)
     {
       Font MyFont = font;
       if (MyFont.Size > 16) MyFont = new Font(font.FontFamily, 12);
@@ -75,9 +76,9 @@ namespace TJFramework
       SetRowHeight(20);
     }
 
-    public void SetRowHeight(int height) => Grid.TableElement.RowHeight = TJConvert.ValueInRange(height, 20, 50);
+    internal void SetRowHeight(int height) => Grid.TableElement.RowHeight = TJConvert.ValueInRange(height, 20, 50);
 
-    public void SetSizeOfCombobox(RadDropDownListEditorElement element)
+    internal void SetSizeOfCombobox(RadDropDownListEditorElement element)
     {
       int RowCount = DefaultRowCountOfDropDownList;
 
@@ -95,13 +96,13 @@ namespace TJFramework
       element.DropDownHeight = Math.Min(RowCount * OneRowHeightOfDropDownList, MaximumDropDownHeight);
     }
 
-    public void LoadUserColumnsSettingsFromDictionary(Dictionary<string, int> ColumnWidth)
+    internal void LoadUserColumnsSettingsFromDictionary(Dictionary<string, int> ColumnWidth)
     {
       if (IsColumnSettingsApplied == false) Grid.ZzLoadColumnWidth(ColumnWidth);
       IsColumnSettingsApplied = true;
     }
 
-    public void EventCellFormatting(object sender, CellFormattingEventArgs e)
+    internal void EventCellFormatting(object sender, CellFormattingEventArgs e)
     {
       /*
       if 
@@ -129,7 +130,7 @@ namespace TJFramework
       }
     }
 
-   public void EventRowFormatting(object sender, RowFormattingEventArgs e)
+    internal void EventRowFormatting(object sender, RowFormattingEventArgs e)
     {
       // return;
       // Здесь мы избавляемся от закраски выделения строки по умолчанию 
@@ -147,7 +148,7 @@ namespace TJFramework
       }
     }
 
-    public void EventCellEditorInitialized(object sender, GridViewCellEventArgs e)
+    internal void EventCellEditorInitialized(object sender, GridViewCellEventArgs e)
     { // Этот метод нужен для установки шрифта ComboBox = DropDownListEditor - иначе не получится //
       IInputEditor editor = e.ActiveEditor;
       if (editor != null && editor is RadDropDownListEditor)
@@ -160,7 +161,7 @@ namespace TJFramework
       }
     }
 
-    public T CreateColumn<T>(string fieldName, string headerText, bool readOnly, DataTable table = null, string valueMember = "", string displayMember = "")
+    internal T CreateColumn<T>(string fieldName, string headerText, bool readOnly, DataTable table = null, string valueMember = "", string displayMember = "")
       where T : GridViewDataColumn, new()
     {
       T dc = new T()
@@ -181,7 +182,7 @@ namespace TJFramework
       return dc;
     }
 
-    public T CreateColumnCombobox<T>(string fieldName, string headerText, bool readOnly, BindingList<MxSimpleEntity> list)
+    internal T CreateColumnCombobox<T>(string fieldName, string headerText, bool readOnly, BindingList<MxSimpleEntity> list)
       where T : GridViewDataColumn, new()
     {
       T dc = new T()
@@ -202,7 +203,7 @@ namespace TJFramework
       return dc;
     }
 
-    public T AddColumn<T>(string fieldName, string headerText, bool readOnly, DataTable table = null, string valueMember = "", string displayMember = "")
+    internal T AddColumn<T>(string fieldName, string headerText, bool readOnly, DataTable table = null, string valueMember = "", string displayMember = "")
       where T : GridViewDataColumn, new()
     {
       T dc = CreateColumn<T>(fieldName, headerText, readOnly, table, valueMember, displayMember);
@@ -210,7 +211,7 @@ namespace TJFramework
       return dc;
     }
 
-    public T AddColumn<T>(string fieldName, string headerText, bool readOnly, System.Type type, int width)
+    internal T AddColumn<T>(string fieldName, string headerText, bool readOnly, System.Type type, int width)
       where T : GridViewDataColumn, new()
     {
       T dc = CreateColumn<T>(fieldName, headerText, readOnly, null, string.Empty, string.Empty);
@@ -220,7 +221,7 @@ namespace TJFramework
       return dc;
     }
 
-    public T AddColumn<T>(BindingList<MxSimpleEntity> list, string fieldName, string headerText, bool readOnly, System.Type type, int width)
+    internal T AddColumn<T>(BindingList<MxSimpleEntity> list, string fieldName, string headerText, bool readOnly, System.Type type, int width)
        where T : GridViewDataColumn, new()
     {
       T dc = CreateColumnCombobox<T>(fieldName, headerText, readOnly, list);
@@ -230,12 +231,12 @@ namespace TJFramework
       return dc;
     }
 
-    public string GetColumnNameByFieldName(string fieldName)
+    internal string GetColumnNameByFieldName(string fieldName)
     {
       foreach (GridViewDataColumn c in Grid.Columns) if (c.FieldName == fieldName) { return c.Name; }; return string.Empty;
     }
 
-    public bool UpdateCurrentCell(string fieldName, string value)
+    internal bool UpdateCurrentCell(string fieldName, string value)
     {
       bool Success = false; bool ErrorOccured = false;
       if (Grid.CurrentRow is GridViewDataRowInfo)
@@ -256,7 +257,7 @@ namespace TJFramework
       return Success;
     }
 
-    public bool UpdateCurrentCell(string fieldName, int value)
+    internal bool UpdateCurrentCell(string fieldName, int value)
     {
       bool Success = false; bool ErrorOccured = false;
       if (Grid.CurrentRow is GridViewDataRowInfo)

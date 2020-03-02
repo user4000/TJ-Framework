@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxIListReturnCode
   {

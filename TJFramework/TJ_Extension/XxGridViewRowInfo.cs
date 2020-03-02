@@ -1,6 +1,7 @@
 ﻿using Telerik.WinControls.UI;
+using TJFramework.Standard;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxGridViewRowInfo
   {

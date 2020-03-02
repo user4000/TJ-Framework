@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxString
   {

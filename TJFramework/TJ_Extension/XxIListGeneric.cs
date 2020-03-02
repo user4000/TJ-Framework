@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxIListGeneric
   {

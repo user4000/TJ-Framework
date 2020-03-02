@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using TJFramework.Standard;
 
 namespace TJFramework
 {

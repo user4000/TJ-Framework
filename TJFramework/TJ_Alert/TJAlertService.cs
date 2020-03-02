@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using TJFramework.Tools;
+using TJFramework.Standard;
 
 namespace TJFramework
 {
@@ -203,6 +204,5 @@ namespace TJFramework
       }
       return s;
     }
-
   }
 }

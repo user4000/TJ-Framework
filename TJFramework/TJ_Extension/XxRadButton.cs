@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxRadButton
   {

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
 
   public static class XxDataColumnChangeEventArgs

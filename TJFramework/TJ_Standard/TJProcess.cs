@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using TJFramework.Extensions;
 
-namespace TJFramework
+namespace TJFramework.Standard
 {
   public class TJProcess
   {

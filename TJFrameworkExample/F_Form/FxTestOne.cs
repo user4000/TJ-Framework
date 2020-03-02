@@ -40,22 +40,12 @@ namespace TJFrameworkExample
 
     private void TestMessage(object sender, EventArgs e)
     {
-      Ms.Message("aaaa", "bbbb").Control(BtnMessage).Delay(3).Size(new Size(33, 44)).Offset(new Point(-234,956)).Info(); ;
+      Ms.Message("aaaa", "bbbb").Control(BtnMessage).Delay(3).Size(330, 123).Offset(-34,56).Info();
     }
-
-
-
-
-
-
-
-
-
-
 
     private void TestAlert(object sender, EventArgs e)
     {
-      //TJFrameworkManager.Service.AlertService.Alert();
+      Ms.Message("Hello !", "This is a test message").Control(BtnAlert).Delay(3).Size(330, 78).Offset(145, -156).Ok();
     }
 
     private void TestPageEnable(object sender, EventArgs e)
@@ -107,7 +97,6 @@ namespace TJFrameworkExample
         case "2": TJFrameworkManager.Pages.GotoPage<FxTestTwo>(); break;
         case "3": TJFrameworkManager.Pages.GotoPage<FxTestThree>(); break;
       }
-
     }
   }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using TJFramework.Standard;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxRadDropDownListClassificatorStandard
   {

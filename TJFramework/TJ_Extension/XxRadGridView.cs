@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.Data;
 using Telerik.WinControls.UI;
+using TJFramework.Standard;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxRadGridView
   {

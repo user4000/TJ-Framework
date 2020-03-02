@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxEncoding
   {

@@ -1,6 +1,6 @@
 ﻿using Telerik.WinControls.UI;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxRadDateTimePicker
   {

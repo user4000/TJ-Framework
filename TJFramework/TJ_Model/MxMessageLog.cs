@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TJFramework
+namespace TJFramework.Standard
 {
   [Serializable]
   public class MxMessageLog

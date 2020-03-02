@@ -85,8 +85,8 @@
     <Compile Include="TJ_Standard\IMessageSubsystem.cs" />
     <Compile Include="TJ_Standard\TJMessage.cs" />
     <Compile Include="TJ_Standard\TJProcess.cs" />
-    <Compile Include="TJ_Standard\TTStandard.cs" />
-    <Compile Include="TJ_Standard\TTString.cs" />
+    <Compile Include="TJ_Standard\TJStandard.cs" />
+    <Compile Include="TJ_Standard\TJString.cs" />
     <Compile Include="TJ_Extension\XxDataColumnChangeEventArgs.cs" />
     <Compile Include="TJ_Extension\XxDataTable.cs" />
     <Compile Include="TJ_Extension\XxEncoding.cs" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using Telerik.WinControls.UI;
 
-namespace TJFramework
+namespace TJFramework.Extensions
 {
   public static class XxGridViewDataColumn
   {
