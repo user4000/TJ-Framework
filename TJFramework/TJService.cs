@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Telerik.WinControls.UI;
-using TJFramework.Form;
 using TJFramework.ApplicationSettings;
+using TJFramework.Form;
 using static TJFramework.Logger.Manager;
 using static TJFramework.TJFrameworkManager;
 
@@ -31,7 +31,6 @@ namespace TJFramework
 
     internal byte GetIndexByMessageType(MsgType type) => (byte)(((byte)type) % CountOfMessageTypes);
 
-
     internal FxMain MainForm { get; private set; } = null;
 
     public FxSettings FormSettings { get; private set; } = null;
@@ -40,19 +39,17 @@ namespace TJFramework
 
     public FxExit FormExit { get; private set; } = null;
 
-
-
-
-
     public bool MainFormIsBeingResized { get; private set; } = false;
 
     internal bool UserHasClickedExit { get; set; } = false;
 
     internal bool MainFormIsBeingDisappeared { get; private set; }
 
+    public Action EventBeforeAnyFormStartHandlerLaunched { get; set; } = null;
 
+    public Action EventMainFormLoadBeforeAnyFormIsCreated { get; set; } = null;
 
-
+    public Action EventMainFormLoadBeforeAnyCustomFormIsCreated { get; set; } = null;
 
     public Action EventAfterAllFormsAreCreated { get; set; } = null;
 
@@ -78,7 +75,7 @@ namespace TJFramework
     internal void CreateMainPageView() => MainPageView = MainPageViewManager.Create(MainForm);
 
     internal Image GetImageByMessageType(MsgType MessageType) => FormLog.ImageIcons.Images[GetIndexByMessageType(MessageType)];
- 
+
     public void StartPage<T>() where T : RadForm
     {
       string TypeOfForm = GetFormName<T>();
@@ -159,7 +156,6 @@ namespace TJFramework
       CheckIsExitForm(childForm.ChildForm);
     }
 
-
     internal void CheckIsExitForm(RadForm radForm)
     {
       if ((radForm is FxExit) && (FormExit == null))
@@ -174,7 +170,7 @@ namespace TJFramework
       if ((radForm is FxLog) && (FormLog == null))
       {
         FormLog = (FxLog)radForm;
-        AlertService = new TJAlertService(this, FormLog);        
+        AlertService = new TJAlertService(this, FormLog);
       }
     }
 
@@ -219,7 +215,7 @@ namespace TJFramework
     }
 
     internal void CreateFormsFromQueue()
-    {      
+    {
       foreach (TJChildForm childForm in QueueChildForms) AddFormToPage(childForm);  /* then we create other child forms */
       QueueChildForms.Clear();
       Pages.GotoPage(StartPageName);
@@ -319,7 +315,7 @@ namespace TJFramework
         MainForm.Icon = MainFormIcon;
         if (NotifyIcon == null) MainForm.MyNotifyIcon.Icon = MainFormIcon;
       }
-      if (NotifyIcon != null) MainForm.MyNotifyIcon.Icon = NotifyIcon;      
+      if (NotifyIcon != null) MainForm.MyNotifyIcon.Icon = NotifyIcon;
     }
 
     public void SetMainFormCaption(string text)
@@ -329,12 +325,11 @@ namespace TJFramework
       {
         MainForm.Text = text;
         if (MainForm.MyNotifyIcon != null) MainForm.MyNotifyIcon.Text = text;
-      }   
+      }
     }
 
-
     public void SetMainPageViewOrientation(StripViewAlignment Alignment) => MainPageViewManager.SetMainPageViewTabOrientation(Alignment);
-       
+
     private void EventMainFormLoad(object sender, EventArgs e)
     {
       MainForm.Visible = false;
@@ -344,9 +339,11 @@ namespace TJFramework
       CreateMainPageView();
       //EventSelectedPageChanged();
       if (TJFrameworkManager.FrameworkSettings.VisualEffectOnStart) MainForm.Opacity = 0;
+      EventMainFormLoadBeforeAnyFormIsCreated?.Invoke();
       CreateFormSettings();
       CreateFormLog();
       CreateFormExit();
+      EventMainFormLoadBeforeAnyCustomFormIsCreated?.Invoke();
       CreateFormsFromQueue(); // Create all of the child forms in the Queue //
       TJFrameworkManager.FrameworkSettings.RestoreMainFormLocationAndSize();
       MainPageView.BringToFront();
@@ -362,6 +359,7 @@ namespace TJFramework
       if (CounterEventFormShow == 0) // These events must be executed only one time //
       {
         CounterEventFormShow++;
+        EventBeforeAnyFormStartHandlerLaunched?.Invoke();
         MainPageViewManager.LaunchStartHandlerOfEachChildForm();
         SetEventMainPageViewSelectedPageChanged();
         EventAfterAllFormsAreCreated?.Invoke();
