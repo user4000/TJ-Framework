@@ -37,20 +37,58 @@ namespace TJFrameworkExample
     private void EventTestMessage5(object sender, EventArgs e)
     {
       string message = "Сообщение из не UI-потока";
-      
+
+      EventTestMessage51(sender, e);
+      EventTestMessage52(sender, e);
+
       int x = 1;
 
       System.Timers.Timer MyTimer = new System.Timers.Timer(1000);
       MyTimer.Elapsed += (s, arg)
         =>
       {
-        Ms.ShortMessage(MsgType.Debug, message + " " + x.ToString(), 500, null, MsgPos.TopLeft,11).CloseOnClick().ToFile().Create();
+        Ms.ShortMessage(MsgType.Ok, message + " " + x.ToString(), 500, null, MsgPos.TopLeft,11).CloseOnClick().ToFile().Create();
         x++;
         if (x > 7) MyTimer.Enabled = false;
       };
       MyTimer.Enabled = true;
     }
 
+
+    private void EventTestMessage51(object sender, EventArgs e)
+    {
+     // string message = "Это сообщение - из не UI-потока";
+
+      int x = 1;
+
+      System.Timers.Timer MyTimer = new System.Timers.Timer(50);
+      MyTimer.Elapsed += (s, arg)
+        =>
+      {
+        Ms.Message(Faker.Internet.SecureUrl(), Faker.Lorem.Paragraph(1)).NoAlert().Info();
+        x++;
+        if (x > 107) MyTimer.Enabled = false;
+      };
+      MyTimer.Enabled = true;
+    }
+
+
+    private void EventTestMessage52(object sender, EventArgs e)
+    {
+      // string message = "Это сообщение - из не UI-потока";
+
+      int x = 1;
+
+      System.Timers.Timer MyTimer = new System.Timers.Timer(177);
+      MyTimer.Elapsed += (s, arg)
+        =>
+      {
+        Ms.Message(Faker.Internet.SecureUrl(), Faker.Lorem.Paragraph(1)).NoAlert().Debug();
+        x++;
+        if (x > 107) MyTimer.Enabled = false;
+      };
+      MyTimer.Enabled = true;
+    }
 
     private void EventTestMessage4(object sender, EventArgs e)
     {
@@ -85,9 +123,5 @@ namespace TJFrameworkExample
 
       Ms.Message("Тестирование. Заголовок сообщения.", message).Control(LbFormTwo).Position(MsgPos.ScreenCenter).PinButton().Delay(15).Ok();
     }
-
-
-
-
   }
 }

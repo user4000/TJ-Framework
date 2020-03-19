@@ -4,7 +4,7 @@ using Telerik.WinControls.UI;
 
 namespace TJFramework.Form
 {
-  public partial class FxLog : RadForm, IEventStartWork
+  public partial class FxLog : RadForm, IEventStartWork, IEventEndWork
   {
     internal AxLog CxLog { get; private set; }
 
@@ -58,6 +58,11 @@ namespace TJFramework.Form
       PnMessage.Visible = PanelMessageIsVisible;
       if (PanelMessageIsVisible) CxLog.EventCopyMessageToDetailMessagePanel();
       try { CxLog.Grid.CurrentRow.EnsureVisible(); } catch { };
+    }
+
+    public void EventEndWork()
+    {
+      CxLog.EventFormIsGoingToBeClosed();
     }
   }
 }

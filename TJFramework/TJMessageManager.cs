@@ -62,5 +62,10 @@ namespace TJFramework
     {
       if (Create == DoNothing) Create = MessageHandlerMethod;
     }
+
+    internal void TurnOffMessageSubsystem()
+    {
+      Create = DoNothing;
+    }
   }
 }

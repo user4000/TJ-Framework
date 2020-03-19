@@ -57,6 +57,11 @@ namespace TJFramework.Form
 
     internal void InitMessageSubsystem() => Ms.InitMessageSubsystem(MessageHandler);
 
+    internal void EventFormIsGoingToBeClosed()
+    {
+      Ms.TurnOffMessageSubsystem();
+    }
+
     internal void EventStartWork()
     {
       InitArrayMessageType();
@@ -293,14 +298,18 @@ namespace TJFramework.Form
     {
       if (CountRow % 1000 == 0)
         if (Table.Rows.Count > MaxCountRow)
-        {
-          DataRow[] rows;
-          rows = Table.Select($"{nameof(MxMessageLog.IdMessage)} < {CountRow - MaxCountRow}");
-          Grid.BeginUpdate();
-          foreach (DataRow row in rows) row.Delete();
-          Grid.EndUpdate();
-          SelectLastRow();
-        }
+          try
+          {
+            DataRow[] rows;
+            rows = Table.Select($"{nameof(MxMessageLog.IdMessage)} < {CountRow - MaxCountRow}");
+            Grid.BeginUpdate();
+            foreach (DataRow row in rows) row.Delete();
+            Grid.EndUpdate();
+            SelectLastRow();
+          }
+          catch 
+          {
+          }
     }
 
     internal void TestAddOneRowToTable()
