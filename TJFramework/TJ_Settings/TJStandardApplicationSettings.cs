@@ -10,9 +10,15 @@ namespace TJFramework.ApplicationSettings
   [Serializable]
   public abstract class TJStandardApplicationSettings
   {
+    //internal const string Empty = "";
+
     internal const string DefaultFolderUserSettings = "settings";
+
     internal const string DefaultBinaryFileName = DefaultFolderUserSettings + @"\application_settings.bin";
-    internal const string DefaultTextFileName   = DefaultFolderUserSettings + @"\application_settings.txt";
+
+    internal const string DefaultTextFileName = DefaultFolderUserSettings + @"\application_settings.txt"; 
+
+    internal string TextFileSettings { get; } = "application_settings.txt"; // TODO: User should be able to change settings file name. Use [TJFrameworkManager] for this feature //
 
     public const string TJStandardDateTimeFull = "yyyy-MM-dd HH:mm:ss";
 
@@ -55,7 +61,7 @@ namespace TJFramework.ApplicationSettings
     }
 
     public static TJStandardApplicationSettings LoadFromBinaryFile(TJStandardApplicationSettings PreviousSettings, string FileContainingSettings = DefaultBinaryFileName)
-    {    
+    {      
       BinaryFormatter binaryFormatter = new BinaryFormatter();
       MemoryStream ms = new MemoryStream();
       using (FileStream fs = new FileStream(FileContainingSettings, FileMode.Open, FileAccess.Read))
@@ -72,7 +78,7 @@ namespace TJFramework.ApplicationSettings
     }
 
     public void SaveToJSONFile(string FileContainingSettings = DefaultTextFileName)
-    {
+    {     
       CreateDirectoryForSettings(FileContainingSettings);
       EventBeforeSaving();
 
