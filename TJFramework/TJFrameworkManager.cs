@@ -1,7 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using TJFramework.Form;
-using TJFramework.Logger;
 using TJFramework.FrameworkSettings;
+using TJFramework.Logger;
 
 namespace TJFramework
 {
@@ -25,13 +28,47 @@ namespace TJFramework
 
     public static FxMain CreateMainForm()
     {
-      if (MainForm==null)
+      if (MainForm == null)
       {
         MainForm = new FxMain();
         Service.InitMainForm(MainForm);
         Service.SetEventsForMainForm();
       }
       return MainForm;
+    }
+
+    internal static string SettingSubFolderName { get; set; } = string.Empty;
+
+    internal static bool IncorrectCharacter(string testName)
+    {
+      Regex containsBadCharacter = new Regex("[" + Regex.Escape(new string(System.IO.Path.GetInvalidPathChars())) + "]");
+      if (containsBadCharacter.IsMatch(testName)) return true;
+
+      containsBadCharacter = new Regex("[" + Regex.Escape(new string(System.IO.Path.GetInvalidFileNameChars())) + "]");
+      if (containsBadCharacter.IsMatch(testName)) return true;
+
+      return false;
+    }
+
+    internal static void SetSubFolderForSettings(string settingSubFolderName)
+    {
+      SettingSubFolderName = settingSubFolderName.Trim();
+      if (IncorrectCharacter(SettingSubFolderName))
+      {
+        SettingSubFolderName = string.Empty;
+        //SettingSubFolderName = Assembly.GetExecutingAssembly().GetName().Name ;
+        //MessageBox.Show("Folder name contains incorrect character", "ArgumentName = [settingSubFolderName]");
+      }
+    }
+
+    internal static string CheckIfSettingSubFolderIsSpecified(string FileName)
+    {
+      /*
+      Example:
+      settings\my_file_name.txt    =>   settings\subfolder\my_file_name.txt
+      */
+      if (SettingSubFolderName != string.Empty) FileName = FileName.Replace(@"\", @"\" + SettingSubFolderName + @"\");
+      return FileName;
     }
   }
 }

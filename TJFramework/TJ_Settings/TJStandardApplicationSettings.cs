@@ -10,15 +10,13 @@ namespace TJFramework.ApplicationSettings
   [Serializable]
   public abstract class TJStandardApplicationSettings
   {
-    //internal const string Empty = "";
-
-    internal const string DefaultFolderUserSettings = "settings";
+    internal const string DefaultFolderUserSettings = "settings"; // User is able to specify a sub-folder of this folder using [CreateApplicationSettings<T>(string SettingSubFolderName = "")] method //
 
     internal const string DefaultBinaryFileName = DefaultFolderUserSettings + @"\application_settings.bin";
 
     internal const string DefaultTextFileName = DefaultFolderUserSettings + @"\application_settings.txt"; 
 
-    internal string TextFileSettings { get; } = "application_settings.txt"; // TODO: User should be able to change settings file name. Use [TJFrameworkManager] for this feature //
+    internal string TextFileSettings { get; } = "application_settings.txt";
 
     public const string TJStandardDateTimeFull = "yyyy-MM-dd HH:mm:ss";
 
@@ -34,9 +32,11 @@ namespace TJFramework.ApplicationSettings
       return d;
     }
     public abstract void EventBeforeSaving();
+
     public abstract void EventAfterSaving();
 
     public abstract void PropertyValueChanged(string PropertyName);
+
     private void CreateDirectoryForSettings(string FileContainingSettings)
     {
       TJTool.CreateDirectoryForFile(FileContainingSettings);
@@ -78,7 +78,8 @@ namespace TJFramework.ApplicationSettings
     }
 
     public void SaveToJSONFile(string FileContainingSettings = DefaultTextFileName)
-    {     
+    {
+      FileContainingSettings = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(FileContainingSettings);
       CreateDirectoryForSettings(FileContainingSettings);
       EventBeforeSaving();
 

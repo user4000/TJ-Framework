@@ -6,10 +6,11 @@ namespace TJFramework.ApplicationSettings
   public class TJStandardJSONSettings<T> where T : new()
   {
     internal const string DefaultFolderUserSettings = TJStandardApplicationSettings.DefaultFolderUserSettings; // "settings";
-    internal const string FrameworkSettingsFileName = DefaultFolderUserSettings + @"\framework_settings.json";
+    internal const string FrameworkSettingsFileName = DefaultFolderUserSettings + @"\framework_settings.txt";
 
     internal virtual void Save(string fileName = FrameworkSettingsFileName)
     {
+      fileName = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(fileName);
       using (StreamWriter file = File.CreateText(fileName))
       {
         JsonSerializer serializer = new JsonSerializer() { Formatting = Formatting.Indented };
@@ -19,6 +20,7 @@ namespace TJFramework.ApplicationSettings
 
     internal static void Save(T Settings, string fileName = FrameworkSettingsFileName)
     {
+      fileName = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(fileName);
       using (StreamWriter file = File.CreateText(fileName))
       {
         JsonSerializer serializer = new JsonSerializer() { Formatting = Formatting.Indented };
@@ -28,6 +30,7 @@ namespace TJFramework.ApplicationSettings
 
     internal static T Load(string fileName = FrameworkSettingsFileName)
     {
+      fileName = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(fileName);
       T t = default(T);
       using (StreamReader file = File.OpenText(fileName))
       {

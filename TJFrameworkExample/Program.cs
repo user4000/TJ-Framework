@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -11,7 +12,7 @@ namespace TJFrameworkExample
 {
   static class Program
   {
-    const string ApplicationUniqueName = "Home Comp 2019-12-12";
+    const string ApplicationUniqueName = "TJFrameworkExample 2020-03-21";
     private static Mutex AxMutex = null;
 
     public static MySettings ApplicationSettings { get => TJFrameworkManager.ApplicationSettings<MySettings>(); } // User custom settings in Property Grid //
@@ -44,7 +45,7 @@ namespace TJFrameworkExample
       TJFrameworkManager.Logger.FileSizeLimitBytes = 1000000;
       TJFrameworkManager.Logger.Create();
 
-      TJFrameworkManager.Service.CreateApplicationSettings<MySettings>();
+      TJFrameworkManager.Service.CreateApplicationSettings<MySettings>(Assembly.GetExecutingAssembly().GetName().Name);
       TJFrameworkManager.Service.AddForm<FxTestOne>("Это форма номер 1");
       TJFrameworkManager.Service.AddForm<FxTestTwo>("Тест вторая форма привет вам друзья");
       TJFrameworkManager.Service.AddForm<FxTestThree>("Number 3");

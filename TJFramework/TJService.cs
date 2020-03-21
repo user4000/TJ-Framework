@@ -202,8 +202,9 @@ namespace TJFramework
       }
     }
 
-    public void CreateApplicationSettings<T>() where T : TJStandardApplicationSettings, new()
+    public void CreateApplicationSettings<T>(string SettingSubFolderName = "") where T : TJStandardApplicationSettings, new()
     {
+      TJFrameworkManager.SetSubFolderForSettings(SettingSubFolderName);
       T settingsDefault = new T(); // Create instance of concrete user settings //
       T localSettingsCurrent = settingsDefault;
       /* Since JSON Serializer cannot save attributes of members of [Settings] class we need this workaround */

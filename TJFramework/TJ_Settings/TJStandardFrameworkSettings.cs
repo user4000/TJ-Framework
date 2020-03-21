@@ -162,8 +162,6 @@ namespace TJFramework.FrameworkSettings
       }
     }
 
-    //public string MainFormCaption { get; set; } = string.Empty;
-
     /*-----------------------------------------------------------------------------------------------------*/
     public bool RememberMainFormLocation { get; set; } = false;
     /*-----------------------------------------------------------------------------------------------------*/

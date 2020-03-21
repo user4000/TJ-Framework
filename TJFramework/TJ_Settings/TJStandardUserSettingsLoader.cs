@@ -9,6 +9,7 @@ namespace TJFramework.ApplicationSettings
 
     public static T LoadFromJSONFile(string FileName = DefaultTextFileName)
     {
+      FileName = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(FileName);
       T t = default(T);
       using (StreamReader file = File.OpenText(FileName))
       {
