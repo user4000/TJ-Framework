@@ -3,6 +3,7 @@ using Serilog;
 
 namespace TJFramework.Logger
 {
+  using System.Reflection;
   using TJFramework;
   public class TJLoggerConfigurator
   {
@@ -22,14 +23,21 @@ namespace TJFramework.Logger
 
     public void EnableLogger(bool Enable) => LoggerIsActive = Enable;
 
-    public void Create()
+    /// <summary>
+    /// Use Assembly.GetExecutingAssembly().GetName().Name as an argument
+    /// </summary>
+    public void Create(string ApplicationName)
     {
       TJLoggerConfigurator Config = this;
+
+      if (TJFrameworkManager.IncorrectCharacter(ApplicationName) || (ApplicationName.Trim()==string.Empty))
+        ApplicationName = Assembly.GetCallingAssembly().GetName().Name;
+
       if (serilogConfig == null)
       {
-        string dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // Time point of logger creation //
-        string fileName = $"{Config.Directory}/{Config.Prefix}_{dateTime}.txt";
-
+        string dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // Time point of logger creation //       
+        string fileName = $"{Config.Directory}/{ApplicationName}/{Config.Prefix}_{dateTime}.txt";
+       
         serilogConfig =
            new Serilog.LoggerConfiguration()
             .MinimumLevel.Debug()

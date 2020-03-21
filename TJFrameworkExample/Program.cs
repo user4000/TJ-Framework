@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -43,7 +42,7 @@ namespace TJFrameworkExample
       Application.SetCompatibleTextRenderingDefault(false);
 
       TJFrameworkManager.Logger.FileSizeLimitBytes = 1000000;
-      TJFrameworkManager.Logger.Create();
+      TJFrameworkManager.Logger.Create(Assembly.GetExecutingAssembly().GetName().Name);
 
       TJFrameworkManager.Service.CreateApplicationSettings<MySettings>(Assembly.GetExecutingAssembly().GetName().Name);
       TJFrameworkManager.Service.AddForm<FxTestOne>("Это форма номер 1");

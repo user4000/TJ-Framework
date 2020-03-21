@@ -202,6 +202,9 @@ namespace TJFramework
       }
     }
 
+    /// <summary>
+    /// Use Assembly.GetExecutingAssembly().GetName().Name as an argument
+    /// </summary>
     public void CreateApplicationSettings<T>(string SettingSubFolderName = "") where T : TJStandardApplicationSettings, new()
     {
       TJFrameworkManager.SetSubFolderForSettings(SettingSubFolderName);
