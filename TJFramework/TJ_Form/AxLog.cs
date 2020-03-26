@@ -17,6 +17,10 @@ namespace TJFramework.Form
 
     internal int MaxCountRow { get; } = 10000;
 
+    internal int MaxHeaderLength { get; } = 5000;
+
+    internal int MaxMessageLength { get; } = 10000;
+
     private int DeltaWidth { get; } = -20;
 
     private int CoTextMessageMinimumWidth { get; } = 100;
@@ -275,8 +279,8 @@ namespace TJFramework.Form
       DataRow row = Table.NewRow();
       row[1] = TJConvert.Time;
       row[2] = ArrayMessageType[NxByte];
-      row[3] = StHeader;
-      row[4] = StText;
+      row[3] = StHeader.Left(MaxHeaderLength);
+      row[4] = StText.Left(MaxMessageLength);
       row[5] = NxByte;
       Table.Rows.Add(row);
 
