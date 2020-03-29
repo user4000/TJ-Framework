@@ -167,6 +167,7 @@
     <Compile Include="TJ_Alert\TJAlert.cs" />
     <Compile Include="TJ_Alert\TJAlertPainter.cs" />
     <Compile Include="TJ_Alert\TJAlertService.cs" />
+    <Compile Include="TJ_Extension\XxRadButtonTextBox.cs" />
     <Compile Include="TJ_Grid\TTGridWithDataTable.cs" />
     <Compile Include="TJ_Model\MxMessageLog.cs" />
     <Compile Include="TJ_Model\MxSimpleEntity.cs" />
