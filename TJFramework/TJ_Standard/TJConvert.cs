@@ -15,7 +15,6 @@ namespace TJFramework.Standard
 {
   public class TJConvert
   {
-
     public const string Empty = "";
 
     public static string StringSeparatorStandard { get; } = "|";
@@ -68,14 +67,14 @@ namespace TJFramework.Standard
     public static int ToInt32(string value, int Default)
     {
       int f = Default;
-      if (Int32.TryParse(value, out int x)) f = x;
+      if (int.TryParse(value, out int x)) f = x;
       return f;
     }
 
     public static int ToInt32(object value, int Default)
     {
       int f = Default;
-      if (Int32.TryParse(value == null ? Default.ToString() : value.ToString(), out int x)) f = x;
+      if (int.TryParse(value == null ? Default.ToString() : value.ToString(), out int x)) f = x;
       return f;
     }
 
@@ -103,13 +102,13 @@ namespace TJFramework.Standard
       }
     }
 
-    public static Object ByteArrayToObject(byte[] array)
+    public static object ByteArrayToObject(byte[] array)
     {
       MemoryStream memStream = new MemoryStream();
       BinaryFormatter binForm = new BinaryFormatter();
       memStream.Write(array, 0, array.Length);
       memStream.Seek(0, SeekOrigin.Begin);
-      Object obj = (Object)binForm.Deserialize(memStream);
+      object obj = binForm.Deserialize(memStream);
       return obj;
     }
 
@@ -177,7 +176,7 @@ namespace TJFramework.Standard
 
     public static byte[] ObjectToCompressedByteArray(object MyObject) => CompressArray(ObjectToByteArray(MyObject));
 
-    public static Object CompressedByteArrayToObject(byte[] array) => ByteArrayToObject(DecompressArray(array));
+    public static object CompressedByteArrayToObject(byte[] array) => ByteArrayToObject(DecompressArray(array));
 
     public static byte[] ObjectToByteArray(object MyObject, bool Compress)
     {
@@ -191,7 +190,7 @@ namespace TJFramework.Standard
       }
     }
 
-    public static Object ByteArrayToObject(byte[] array, bool Decompress)
+    public static object ByteArrayToObject(byte[] array, bool Decompress)
     {
       if (Decompress)
       {

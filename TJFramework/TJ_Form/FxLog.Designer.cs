@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FxLog));
       this.PnGrid = new Telerik.WinControls.UI.RadPanel();
       this.GxLog = new Telerik.WinControls.UI.RadGridView();
@@ -68,7 +68,7 @@
       this.PnGrid.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.PnGrid.Location = new System.Drawing.Point(0, 0);
       this.PnGrid.Name = "PnGrid";
-      this.PnGrid.Size = new System.Drawing.Size(980, 485);
+      this.PnGrid.Size = new System.Drawing.Size(988, 448);
       this.PnGrid.TabIndex = 0;
       // 
       // GxLog
@@ -93,7 +93,7 @@
       this.GxLog.MasterTemplate.ShowColumnHeaders = false;
       this.GxLog.MasterTemplate.ShowRowHeaderColumn = false;
       this.GxLog.MasterTemplate.VerticalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow;
-      this.GxLog.MasterTemplate.ViewDefinition = tableViewDefinition1;
+      this.GxLog.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.GxLog.Name = "GxLog";
       this.GxLog.ReadOnly = true;
       this.GxLog.ShowGroupPanel = false;
@@ -109,10 +109,10 @@
       this.PnMessage.Controls.Add(this.TxtHeader);
       this.PnMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.PnMessage.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.PnMessage.Location = new System.Drawing.Point(0, 485);
+      this.PnMessage.Location = new System.Drawing.Point(0, 448);
       this.PnMessage.Name = "PnMessage";
       this.PnMessage.Padding = new System.Windows.Forms.Padding(5);
-      this.PnMessage.Size = new System.Drawing.Size(980, 300);
+      this.PnMessage.Size = new System.Drawing.Size(988, 360);
       this.PnMessage.TabIndex = 0;
       // 
       // TxtMessage
@@ -126,7 +126,7 @@
       this.TxtMessage.MaxLength = 10000;
       this.TxtMessage.Multiline = true;
       this.TxtMessage.Name = "TxtMessage";
-      this.TxtMessage.Size = new System.Drawing.Size(970, 250);
+      this.TxtMessage.Size = new System.Drawing.Size(978, 310);
       this.TxtMessage.TabIndex = 0;
       // 
       // TxtHeader
@@ -140,7 +140,7 @@
       this.TxtHeader.MaxLength = 5000;
       this.TxtHeader.Multiline = true;
       this.TxtHeader.Name = "TxtHeader";
-      this.TxtHeader.Size = new System.Drawing.Size(970, 40);
+      this.TxtHeader.Size = new System.Drawing.Size(978, 40);
       this.TxtHeader.TabIndex = 0;
       this.TxtHeader.VerticalScrollBarState = Telerik.WinControls.UI.ScrollState.AlwaysHide;
       // 
@@ -153,15 +153,15 @@
       this.PnMenu.Controls.Add(this.BtnShowDetailMessage);
       this.PnMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.PnMenu.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.PnMenu.Location = new System.Drawing.Point(0, 785);
+      this.PnMenu.Location = new System.Drawing.Point(0, 808);
       this.PnMenu.Name = "PnMenu";
-      this.PnMenu.Size = new System.Drawing.Size(980, 25);
+      this.PnMenu.Size = new System.Drawing.Size(988, 32);
       this.PnMenu.TabIndex = 0;
       // 
       // BtnTest
       // 
       this.BtnTest.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.BtnTest.Location = new System.Drawing.Point(715, 2);
+      this.BtnTest.Location = new System.Drawing.Point(715, 6);
       this.BtnTest.Name = "BtnTest";
       this.BtnTest.Size = new System.Drawing.Size(75, 20);
       this.BtnTest.TabIndex = 0;
@@ -171,7 +171,7 @@
       // BtnSearchField
       // 
       this.BtnSearchField.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.BtnSearchField.Location = new System.Drawing.Point(288, 2);
+      this.BtnSearchField.Location = new System.Drawing.Point(288, 6);
       this.BtnSearchField.Name = "BtnSearchField";
       this.BtnSearchField.Size = new System.Drawing.Size(100, 20);
       this.BtnSearchField.TabIndex = 0;
@@ -180,7 +180,7 @@
       // BtnFilter
       // 
       this.BtnFilter.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.BtnFilter.Location = new System.Drawing.Point(150, 2);
+      this.BtnFilter.Location = new System.Drawing.Point(150, 6);
       this.BtnFilter.Name = "BtnFilter";
       this.BtnFilter.Size = new System.Drawing.Size(100, 20);
       this.BtnFilter.TabIndex = 0;
@@ -189,7 +189,7 @@
       // BtnCopyToClipboard
       // 
       this.BtnCopyToClipboard.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.BtnCopyToClipboard.Location = new System.Drawing.Point(426, 2);
+      this.BtnCopyToClipboard.Location = new System.Drawing.Point(426, 6);
       this.BtnCopyToClipboard.Name = "BtnCopyToClipboard";
       this.BtnCopyToClipboard.Size = new System.Drawing.Size(100, 20);
       this.BtnCopyToClipboard.TabIndex = 0;
@@ -198,7 +198,7 @@
       // BtnShowDetailMessage
       // 
       this.BtnShowDetailMessage.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.BtnShowDetailMessage.Location = new System.Drawing.Point(12, 2);
+      this.BtnShowDetailMessage.Location = new System.Drawing.Point(12, 6);
       this.BtnShowDetailMessage.Name = "BtnShowDetailMessage";
       this.BtnShowDetailMessage.Size = new System.Drawing.Size(100, 20);
       this.BtnShowDetailMessage.TabIndex = 0;
@@ -219,7 +219,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(980, 810);
+      this.ClientSize = new System.Drawing.Size(988, 840);
       this.Controls.Add(this.PnGrid);
       this.Controls.Add(this.PnMessage);
       this.Controls.Add(this.PnMenu);
@@ -251,9 +251,6 @@
         }
 
     #endregion
-
-    private Telerik.WinControls.UI.RadPanel PnGrid;
-    private Telerik.WinControls.UI.RadPanel PnMenu;
     public Telerik.WinControls.UI.RadButton BtnShowDetailMessage;
     public Telerik.WinControls.UI.RadTextBoxControl TxtMessage;
     public Telerik.WinControls.UI.RadTextBoxControl TxtHeader;
@@ -264,5 +261,7 @@
     public System.Windows.Forms.ImageList ImageIcons;
     public Telerik.WinControls.UI.RadButton BtnFilter;
     public Telerik.WinControls.UI.RadButton BtnSearchField;
+    public Telerik.WinControls.UI.RadPanel PnGrid;
+    public Telerik.WinControls.UI.RadPanel PnMenu;
   }
 }

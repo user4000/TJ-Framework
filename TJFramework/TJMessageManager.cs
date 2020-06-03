@@ -39,11 +39,24 @@ namespace TJFramework
     }
 
     public TJMessage ShortMessage(MsgType type, string ShortMessage, int Width, Control control = null, MsgPos position = MsgPos.Unknown, int delay = 0)
-      => 
+      =>
       new TJMessage
       {
         Header = ShortMessage,
         MessageType = type,
+        AlertControl = control,
+        AlertPosition = position,
+        AutoCloseDelay = delay,
+        AlertSize = new Size(Width, ShortMessageAlertHeight),
+        FlagIcon = false
+      };
+
+    public TJMessage ShortMessage(string ShortMessage, int Width, Control control = null, MsgPos position = MsgPos.Unknown, int delay = 0)
+      =>
+      new TJMessage
+      {
+        Header = ShortMessage,
+        MessageType = MsgType.Debug,
         AlertControl = control,
         AlertPosition = position,
         AutoCloseDelay = delay,

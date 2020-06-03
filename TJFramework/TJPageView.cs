@@ -39,7 +39,6 @@ namespace TJFramework
           MainPageView.ItemSize = TJFrameworkManager.FrameworkSettings.PageViewItemSize;
       }
       return MainPageView;
-
     }
 
     private void SetPageViewStripProperties(RadPageView pageView)

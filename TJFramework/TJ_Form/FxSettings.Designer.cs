@@ -46,16 +46,16 @@
       this.PnTool.Controls.Add(this.BtnSaveSettings);
       this.PnTool.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.PnTool.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.PnTool.Location = new System.Drawing.Point(0, 598);
+      this.PnTool.Location = new System.Drawing.Point(0, 610);
       this.PnTool.Name = "PnTool";
-      this.PnTool.Size = new System.Drawing.Size(648, 32);
+      this.PnTool.Size = new System.Drawing.Size(656, 50);
       this.PnTool.TabIndex = 1;
       // 
       // BtnSaveSettings
       // 
       this.BtnSaveSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
       this.BtnSaveSettings.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.BtnSaveSettings.Location = new System.Drawing.Point(30, 5);
+      this.BtnSaveSettings.Location = new System.Drawing.Point(30, 14);
       this.BtnSaveSettings.Name = "BtnSaveSettings";
       this.BtnSaveSettings.Size = new System.Drawing.Size(130, 22);
       this.BtnSaveSettings.TabIndex = 0;
@@ -67,7 +67,7 @@
       this.panel_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel_Grid.Location = new System.Drawing.Point(0, 0);
       this.panel_Grid.Name = "panel_Grid";
-      this.panel_Grid.Size = new System.Drawing.Size(648, 598);
+      this.panel_Grid.Size = new System.Drawing.Size(656, 610);
       this.panel_Grid.TabIndex = 2;
       this.panel_Grid.Text = "radPanel2";
       // 
@@ -84,7 +84,7 @@
       this.GxProperty.Name = "GxProperty";
       this.GxProperty.Padding = new System.Windows.Forms.Padding(30);
       this.GxProperty.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-      this.GxProperty.Size = new System.Drawing.Size(648, 598);
+      this.GxProperty.Size = new System.Drawing.Size(656, 610);
       this.GxProperty.SortOrder = System.Windows.Forms.SortOrder.Ascending;
       this.GxProperty.TabIndex = 0;
       this.GxProperty.ToolbarVisible = true;
@@ -98,7 +98,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(648, 630);
+      this.ClientSize = new System.Drawing.Size(656, 660);
       this.Controls.Add(this.panel_Grid);
       this.Controls.Add(this.PnTool);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -120,10 +120,9 @@
         }
 
     #endregion
-
-    private Telerik.WinControls.UI.RadPanel PnTool;
-    private Telerik.WinControls.UI.RadButton BtnSaveSettings;
     private Telerik.WinControls.UI.RadPanel panel_Grid;
     public Telerik.WinControls.UI.RadPropertyGrid GxProperty;
+    public Telerik.WinControls.UI.RadPanel PnTool;
+    public Telerik.WinControls.UI.RadButton BtnSaveSettings;
   }
 }

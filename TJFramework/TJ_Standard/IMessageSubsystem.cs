@@ -17,6 +17,8 @@ namespace TJFramework
 
     TJMessage ShortMessage(MsgType type, string message, int Width, Control control = null, MsgPos position = MsgPos.Unknown, int delay = 0);
 
+    TJMessage ShortMessage(string message, int Width, Control control = null, MsgPos position = MsgPos.Unknown, int delay = 0);
+
     TJMessage Error(string header, Exception ex);
   }
 }
