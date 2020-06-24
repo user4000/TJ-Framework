@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 using System.Runtime.Serialization.Formatters.Binary;
 using Telerik.WinControls.UI;
-using Newtonsoft.Json;
 using TJFramework.Tools;
 
 namespace TJFramework.ApplicationSettings
@@ -10,17 +10,20 @@ namespace TJFramework.ApplicationSettings
   [Serializable]
   public abstract class TJStandardApplicationSettings
   {
-    internal const string DefaultFolderUserSettings = "settings"; // User is able to specify a sub-folder of this folder using [CreateApplicationSettings<T>(string SettingSubFolderName = "")] method //
+    public const string DefaultFolderUserSettings = "settings"; // User is able to specify a sub-folder of this folder using [CreateApplicationSettings<T>(string SettingSubFolderName = "")] method //
 
-    internal const string DefaultBinaryFileName = DefaultFolderUserSettings + @"\application_settings.bin";
+    public const string DefaultTextFileUserSettings = "application_settings.txt";
 
-    internal const string DefaultTextFileName = DefaultFolderUserSettings + @"\application_settings.txt"; 
+    public const string DefaultBinaryFileName = DefaultFolderUserSettings + @"\application_settings.bin";
 
-    internal string TextFileSettings { get; } = "application_settings.txt";
+    public const string DefaultTextFileName = DefaultFolderUserSettings + @"\" + DefaultTextFileUserSettings;
 
-    public const string TJStandardDateTimeFull = "yyyy-MM-dd HH:mm:ss";
+    public string FolderSettings { get; } = DefaultFolderUserSettings;
+    public string TextFileUserSettings { get; } = DefaultTextFileUserSettings;
 
-    public static DateTime TJStandardDateTimeDefaultValue = new DateTime(2000, 01, 01);
+    public const string TJStandardDateTimeFull  = "yyyy-MM-dd HH:mm:ss";
+
+    public static DateTime TJStandardDateTimeDefaultValue { get; } = new DateTime(2000, 01, 01);
 
     public string GetDateTime(DateTime d) => d.ToString(TJStandardDateTimeFull);
 

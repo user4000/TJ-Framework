@@ -5,8 +5,9 @@ namespace TJFramework.ApplicationSettings
 {
   public class TJStandardJSONSettings<T> where T : new()
   {
-    internal const string DefaultFolderUserSettings = TJStandardApplicationSettings.DefaultFolderUserSettings; // "settings";
-    internal const string FrameworkSettingsFileName = DefaultFolderUserSettings + @"\framework_settings.txt";
+    public const string DefaultFolderUserSettings = TJStandardApplicationSettings.DefaultFolderUserSettings; // "settings";
+
+    public const string FrameworkSettingsFileName = DefaultFolderUserSettings + @"\framework_settings.txt";
 
     internal virtual void Save(string fileName = FrameworkSettingsFileName)
     {
