@@ -18,8 +18,8 @@ namespace TJFramework.ApplicationSettings
 
     public const string DefaultTextFileName = DefaultFolderUserSettings + @"\" + DefaultTextFileUserSettings;
 
-    public string FolderSettings { get; } = DefaultFolderUserSettings;
-    public string TextFileUserSettings { get; } = DefaultTextFileUserSettings;
+    public virtual string FolderSettings { get; } = DefaultFolderUserSettings;
+    public virtual string TextFileUserSettings { get; } = DefaultTextFileUserSettings;
 
     public const string TJStandardDateTimeFull  = "yyyy-MM-dd HH:mm:ss";
 

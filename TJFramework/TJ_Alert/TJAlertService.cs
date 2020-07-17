@@ -49,7 +49,7 @@ namespace TJFramework
         ContentText = Message.Text.Length > AlertMessageMaxLength ? Message.Text.StringLeft(AlertMessageMaxLength) : Message.Text,
         AutoCloseDelay = Message.AutoCloseDelay > 0 ? Message.AutoCloseDelay : TJFrameworkManager.FrameworkSettings.SecondsAlertAutoClose
       };
-
+      
       Painter.SetColor(Alert, Message.MessageType);
       SetAlertPicture(Alert, Message);
       SetAlertFont(Alert);
