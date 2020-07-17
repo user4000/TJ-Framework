@@ -73,7 +73,7 @@ namespace TJFramework
 
     private void CheckQueue(TJAlert Alert)
     {
-      if (TJFrameworkManager.FrameworkSettings.LimitNumberOfAlerts)
+      if ((TJFrameworkManager.FrameworkSettings.LimitNumberOfAlerts) && (Alert != null))
       {
         QueueAlert.Enqueue(Alert);
         if (QueueAlert.Count > TJFrameworkManager.FrameworkSettings.MaxAlertCount)
@@ -193,6 +193,16 @@ namespace TJFramework
             Message.AlertSize.Width <= 10 ? Alert.Popup.Size.Width : Message.AlertSize.Width,
             Message.AlertSize.Height <= 10 ? Alert.Popup.Size.Height : Message.AlertSize.Height
           );
+    }
+
+    public void RemoveAllAlerts()
+    {
+      TJAlert item; int i = 1;
+      while (QueueAlert.TryDequeue(out item))
+      {
+        item?.Hide(); item?.Dispose();
+        if (i++ > 100) break;
+      }      
     }
 
     private string TestQueueAlert()
