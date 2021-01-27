@@ -27,6 +27,48 @@ namespace TJFrameworkExample
       BtnMessage4.Click += EventTestMessage4;
       BtnMessage5.Click += EventTestMessage5;
       BtnTestQueue.Click += EventTestQueue;
+      BxTest1.Click += EventTest1;
+      BxTest2.Click += EventTest2;
+      BxTest3.Click += EventTest3;
+      BxTest4.Click += EventTest4;
+      BxTest5.Click += EventTest5;
+      BxTest6.Click += EventTest6;
+    }
+
+    private void EventTest1(object sender, EventArgs e)
+    {
+      Ms.Message("Привет вам, уважаемые друзья и любители замечательного языка программирования C#, вы сейчас видите тестовое сообщение для всплывающего окошка", "Данная кнопка тестирует сообщение, которое программа выводит на экран в виде всплывающего окошка")
+        .Wire(BxTest1).Delay(3).CloseOnClick().Debug();
+    }
+
+    private void EventTest2(object sender, EventArgs e)
+    {
+      Ms.Message("Привет вам, уважаемые друзья и любители замечательного языка программирования C#, вы сейчас видите тестовое сообщение для всплывающего окошка", "Данная кнопка тестирует сообщение, которое программа выводит на экран в виде всплывающего окошка")
+        .Wire(BxTest2).Delay(3).CloseOnClick().Info();
+    }
+
+    private void EventTest3(object sender, EventArgs e)
+    {
+      Ms.Message("Привет вам, уважаемые друзья и любители замечательного языка программирования C#, вы сейчас видите тестовое сообщение для всплывающего окошка", "Данная кнопка тестирует сообщение, которое программа выводит на экран в виде всплывающего окошка")
+        .Wire(BxTest3).Delay(3).CloseOnClick().Ok();
+    }
+
+    private void EventTest4(object sender, EventArgs e)
+    {
+      Ms.Message("Привет, уважаемые друзья, вы сейчас видите тестовое сообщение для всплывающего окошка", "Данная кнопка тестирует сообщение, которое программа выводит на экран в виде всплывающего окошка")
+        .Wire(BxTest4).Delay(3).CloseOnClick().Fail();
+    }
+
+    private void EventTest5(object sender, EventArgs e)
+    {
+      Ms.Message("Привет, уважаемые друзья, вы сейчас видите тестовое сообщение для всплывающего окошка", "Данная кнопка тестирует сообщение, которое программа выводит на экран в виде всплывающего окошка")
+        .Wire(BxTest5).Delay(3).CloseOnClick().Warning();
+    }
+
+    private void EventTest6(object sender, EventArgs e)
+    {
+      Ms.Message("Привет, уважаемые друзья, вы сейчас видите тестовое сообщение для всплывающего окошка", "Данная кнопка тестирует сообщение, которое программа выводит на экран в виде всплывающего окошка")
+        .Wire(BxTest6).Delay(3).CloseOnClick().Error();
     }
 
     private void EventTestQueue(object sender, EventArgs e)
