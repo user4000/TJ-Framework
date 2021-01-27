@@ -1,10 +1,11 @@
-﻿using System.Collections.Concurrent;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Telerik.WinControls.UI;
+﻿using System.Drawing;
 using TJFramework.Tools;
 using TJFramework.Standard;
+using System.Windows.Forms;
+using System.ComponentModel;
+using Telerik.WinControls.UI;
+using System.Collections.Concurrent;
+using Telerik.WinControls;
 
 namespace TJFramework
 {
@@ -150,11 +151,18 @@ namespace TJFramework
 
       if (AlertControl == null) return;
 
-      Point p;
+      Point p = new Point(0, 0);
       int AlertHeight = Alert.Popup.DisplayRectangle.Height;
       int AlertWidth = Alert.Popup.DisplayRectangle.Width;
 
-      try { p = AlertControl.PointToScreen(Point.Empty); } catch { return; }
+      try
+      {
+        p = AlertControl.PointToScreen(Point.Empty);
+      }
+      catch
+      {
+        return;
+      }
 
       if (p.Y < (ScreenHeight / 2))
         p.Y += AlertControl.Height + ConstDy;
