@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
+using System.Drawing;
+using TJFramework.Standard;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using TJFramework.Extensions;
-using TJFramework.Standard;
 using static TJFramework.Logger.Manager;
 using static TJFramework.TJFrameworkManager;
+using System.Threading;
 
 namespace TJFramework.Form
 {
@@ -61,8 +62,33 @@ namespace TJFramework.Form
 
     internal void InitMessageSubsystem() => Ms.InitMessageSubsystem(MessageHandler);
 
+
+
+
+
+    // https://stackoverflow.com/questions/29411961/c-sharp-and-thread-safety-of-a-bool/49233660 //
+    // default is false, set 1 for true //
+    private int _threadSafeBoolValueAllowAddNewRows = 1;
+
+    public bool FlagAllowAddNewRowsToTheTable // Флаг показывает можно ли добавлять новые строки в таблицу //
+    {
+      get { return (Interlocked.CompareExchange(ref _threadSafeBoolValueAllowAddNewRows, 1, 1) == 1); }
+      set
+      {
+        if (value) Interlocked.CompareExchange(ref _threadSafeBoolValueAllowAddNewRows, 1, 0);
+        else Interlocked.CompareExchange(ref _threadSafeBoolValueAllowAddNewRows, 0, 1);
+      }
+    }
+
+
+
+
+
+
+
     internal void EventFormIsGoingToBeClosed()
     {
+      FlagAllowAddNewRowsToTheTable = false;
       Ms.TurnOffMessageSubsystem();
     }
 
@@ -70,7 +96,12 @@ namespace TJFramework.Form
     {
       InitArrayMessageType();
       AddConditionalFormatting();
-      Grid.SizeChanged += EventGridSizeChanged;      
+      SetEvents();
+    }
+
+    internal void SetEvents()
+    {
+      Grid.SizeChanged += EventGridSizeChanged;
       Grid.DoubleClick += EventGridDoubleClick;
       Grid.SelectionChanged += EventGridSelectionChanged;
       //Grid.RowHeightChanging += EventGridRowHeightChanging;
@@ -87,7 +118,10 @@ namespace TJFramework.Form
           Grid.TableElement.ScrollToRow(Grid.SelectedRows[0]);
           AdjustMessageTextColumnWidth();
         }
-        catch { };
+        catch
+        {
+
+        };
     }
 
     internal void EventCopyMessageToDetailMessagePanel()
@@ -98,17 +132,23 @@ namespace TJFramework.Form
 
     internal void EventCopyMessageToClipboard(object sender, EventArgs e)
     {
+      Service.AlertService.RemoveAllAlerts();
+
       if (Table.Rows.Count < 1)
       {
         Ms.ShortMessage(MsgType.Fail, "No any text to copy", 250, FormLog.BtnCopyToClipboard, MsgPos.Unknown, 2).NoTable().Create();
         return;
       }
+
       try
       {
         Clipboard.SetText(CvHeaderMessage + "\n " + CvTextMessage + "\n");
         Ms.ShortMessage(MsgType.Debug, "Text is copied to clipboard", 250, FormLog.BtnCopyToClipboard, MsgPos.Unknown, 2).NoTable().Create();
       }
-      catch { }
+      catch
+      {
+
+      }
     }
 
     private void EventGridSelectionChanged(object sender, EventArgs e)
@@ -212,11 +252,12 @@ namespace TJFramework.Form
       Grid.EnableSorting = false;
       Grid.EnableCustomSorting = false;
       Grid.AllowColumnHeaderContextMenu = false;
-      Grid.ShowFilteringRow = false;     
-      Grid.AutoScroll = true;      
+      Grid.ShowFilteringRow = false;
+      Grid.AutoScroll = true;
       Grid.SelectionMode = GridViewSelectionMode.FullRowSelect;
       Grid.TableElement.RowHeight = MinRowHeight;
       Grid.TableElement.TableHeaderHeight = MinRowHeight;
+      Grid.MasterView.TableSearchRow.ShowCloseButton = false;
     }
 
     private void EventGridDoubleClick(object sender, EventArgs e)
@@ -274,6 +315,8 @@ namespace TJFramework.Form
 
     internal void AddOneRow(byte NxByte, string StHeader, string StText)
     {
+      if (FlagAllowAddNewRowsToTheTable == false) return;
+
       if (NxByte > 5) NxByte = (byte)(NxByte % 6);
 
       DataRow row = Table.NewRow();
@@ -295,25 +338,67 @@ namespace TJFramework.Form
       {
         Grid.TableElement.ScrollToRow(Grid.Rows.Last());
         Grid.CurrentRow = Grid.Rows.Last();
-      } catch { };    
+      }
+      catch
+      {
+
+      }
+    }
+
+    private void DeleteAllRowsInnerMethod()
+    {
+      FlagAllowAddNewRowsToTheTable = false;
+
+      DataRow[] rows;
+
+      try
+      {
+        rows = Table.Select();
+        Grid.BeginUpdate();
+        foreach (DataRow row in rows) row.Delete();
+        Grid.EndUpdate();
+      }
+      catch
+      {
+
+      }
+
+      FlagAllowAddNewRowsToTheTable = true;
+    }
+
+    internal void DeleteAllRows()
+    {
+      if (Table.Rows.Count > 0)
+      {
+        DeleteAllRowsInnerMethod();
+      }
+    }
+
+    private void DeleteOldRowsInnerMethod()
+    {
+      FlagAllowAddNewRowsToTheTable = false;
+      DataRow[] rows;
+      try
+      {
+        rows = Table.Select($"{nameof(MxMessageLog.IdMessage)} < {CountRow - MaxCountRow}");
+        Grid.BeginUpdate();
+        foreach (DataRow row in rows) row.Delete();
+        Grid.EndUpdate();
+        SelectLastRow();
+      }
+      catch
+      {
+
+      }
+      FlagAllowAddNewRowsToTheTable = true;
     }
 
     internal void DeleteOldRows()
     {
-      if (CountRow % 1000 == 0)
-        if (Table.Rows.Count > MaxCountRow)
-          try
-          {
-            DataRow[] rows;
-            rows = Table.Select($"{nameof(MxMessageLog.IdMessage)} < {CountRow - MaxCountRow}");
-            Grid.BeginUpdate();
-            foreach (DataRow row in rows) row.Delete();
-            Grid.EndUpdate();
-            SelectLastRow();
-          }
-          catch 
-          {
-          }
+      if ((CountRow % 1000 == 0) && (Table.Rows.Count > MaxCountRow))
+      {
+        DeleteOldRowsInnerMethod();
+      }
     }
 
     internal void TestAddOneRowToTable()
@@ -329,17 +414,17 @@ namespace TJFramework.Form
 
     internal void MessageHandler(TJMessage Message)
     {
-      if (Message.FlagTable) 
+      if (Message.FlagTable)
       {
         AddOneRowThreadSafe(Message);
       }
 
-      if (Message.FlagFile) 
+      if (Message.FlagFile)
       {
         Log.Save(Message.MessageType, Message.Header, Message.Text);
       }
 
-      if (Message.FlagAlert) 
+      if (Message.FlagAlert)
       {
         ShowAlertThreadSafe(Message);
       }
@@ -353,7 +438,7 @@ namespace TJFramework.Form
         (
           (Action)delegate ()
           {
-            AddOneRow((byte)Message.MessageType, Message.Header, Message.Text);            
+            AddOneRow((byte)Message.MessageType, Message.Header, Message.Text);
           }
         );
       }

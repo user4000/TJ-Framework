@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using System.Threading.Tasks;
 
 namespace TJFramework.Form
 {
@@ -24,11 +25,26 @@ namespace TJFramework.Form
 
       PnMessage.Visible = PanelMessageIsVisible;
       GxLog.Dock = DockStyle.Fill;
+
+      SetEvents();
+    }
+
+    public void SetEvents()
+    {
       BtnShowDetailMessage.Click += EventButtonShowDetailMessageClick;
       BtnTest.Click += CxLog.EventTestButtonClick;
       BtnCopyToClipboard.Click += CxLog.EventCopyMessageToClipboard;
       BtnFilter.Click += EventButtonFilterClick;
       BtnSearchField.Click += EventButtonClickSearchField;
+      BtnClearTable.Click += EventClearTable;
+    }
+
+    private async void EventClearTable(object sender, EventArgs e)
+    {
+      BtnClearTable.Enabled = false;
+      CxLog.DeleteAllRows();
+      await Task.Delay(250);
+      BtnClearTable.Enabled = true;
     }
 
     public void EventUserVisitedThisPage()
@@ -37,19 +53,28 @@ namespace TJFramework.Form
       CxLog.EventUserVisitedThisPage();
     }
 
-    private void EventButtonClickSearchField(object sender, EventArgs e)
+    private async void EventButtonClickSearchField(object sender, EventArgs e)
     {
+      BtnSearchField.Enabled = false;
       GxLog.AllowSearchRow = !GxLog.AllowSearchRow;
+      await Task.Delay(250);
+      BtnSearchField.Enabled = true;
     }
 
-    internal void EventButtonFilterClick(object sender, EventArgs e)
+    internal async void EventButtonFilterClick(object sender, EventArgs e)
     {
+      BtnFilter.Enabled = false;
       GxLog.ShowFilteringRow = !GxLog.ShowFilteringRow;
+      await Task.Delay(250);
+      BtnFilter.Enabled = true;
     }
 
-    internal void EventButtonShowDetailMessageClick(object sender, EventArgs e)
+    internal async void EventButtonShowDetailMessageClick(object sender, EventArgs e)
     {
+      BtnShowDetailMessage.Enabled = false;
       EventButtonShowDetailMessageClick();
+      await Task.Delay(100);
+      BtnShowDetailMessage.Enabled = true;
     }
 
     internal void EventButtonShowDetailMessageClick()
