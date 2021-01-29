@@ -42,6 +42,8 @@
       this.BxTest4 = new Telerik.WinControls.UI.RadButton();
       this.BxTest5 = new Telerik.WinControls.UI.RadButton();
       this.BxTest6 = new Telerik.WinControls.UI.RadButton();
+      this.BxTestMainFormPanels = new Telerik.WinControls.UI.RadButton();
+      this.BxHideMainFormPanels = new Telerik.WinControls.UI.RadButton();
       ((System.ComponentModel.ISupportInitialize)(this.LbFormTwo)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.BtnMessage1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.BtnMessage2)).BeginInit();
@@ -56,6 +58,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.BxTest4)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.BxTest5)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.BxTest6)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.BxTestMainFormPanels)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.BxHideMainFormPanels)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -187,6 +191,24 @@
       this.BxTest6.TabIndex = 2;
       this.BxTest6.Text = "Test 6";
       // 
+      // BxTestMainFormPanels
+      // 
+      this.BxTestMainFormPanels.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.BxTestMainFormPanels.Location = new System.Drawing.Point(57, 12);
+      this.BxTestMainFormPanels.Name = "BxTestMainFormPanels";
+      this.BxTestMainFormPanels.Size = new System.Drawing.Size(166, 25);
+      this.BxTestMainFormPanels.TabIndex = 2;
+      this.BxTestMainFormPanels.Text = "Test Main form Panels";
+      // 
+      // BxHideMainFormPanels
+      // 
+      this.BxHideMainFormPanels.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.BxHideMainFormPanels.Location = new System.Drawing.Point(244, 12);
+      this.BxHideMainFormPanels.Name = "BxHideMainFormPanels";
+      this.BxHideMainFormPanels.Size = new System.Drawing.Size(166, 25);
+      this.BxHideMainFormPanels.TabIndex = 2;
+      this.BxHideMainFormPanels.Text = "Hide Main form Panels";
+      // 
       // FxTestTwo
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +226,8 @@
       this.Controls.Add(this.BtnMessage3);
       this.Controls.Add(this.BtnMessage2);
       this.Controls.Add(this.BtnTestQueue);
+      this.Controls.Add(this.BxHideMainFormPanels);
+      this.Controls.Add(this.BxTestMainFormPanels);
       this.Controls.Add(this.BtnMessage1);
       this.Controls.Add(this.LbFormTwo);
       this.Name = "FxTestTwo";
@@ -226,6 +250,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.BxTest4)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.BxTest5)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.BxTest6)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.BxTestMainFormPanels)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.BxHideMainFormPanels)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -248,5 +274,7 @@
     public Telerik.WinControls.UI.RadButton BxTest4;
     public Telerik.WinControls.UI.RadButton BxTest5;
     public Telerik.WinControls.UI.RadButton BxTest6;
+    private Telerik.WinControls.UI.RadButton BxTestMainFormPanels;
+    private Telerik.WinControls.UI.RadButton BxHideMainFormPanels;
   }
 }

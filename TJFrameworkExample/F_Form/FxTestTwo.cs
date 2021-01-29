@@ -33,6 +33,26 @@ namespace TJFrameworkExample
       BxTest4.Click += EventTest4;
       BxTest5.Click += EventTest5;
       BxTest6.Click += EventTest6;
+      BxTestMainFormPanels.Click += EventTestMainFormPanels;
+      BxHideMainFormPanels.Click += EventHideMainFormPanels;
+    }
+
+    private void EventHideMainFormPanels(object sender, EventArgs e)
+    {
+      MainForm.MainFormMenu.Visible = false;
+      MainForm.PnMainTop.Visible = false;
+      MainForm.PnMainSide.Visible = false;
+      MainForm.SplitterMainHorizontal.Visible = false;
+      MainForm.SplitterMainVertical.Visible = false;
+    }
+
+    private void EventTestMainFormPanels(object sender, EventArgs e)
+    {
+      MainForm.SplitterMainHorizontal.Visible = true;
+      MainForm.SplitterMainVertical.Visible = true;
+      MainForm.PnMainTop.Visible = true;
+      MainForm.PnMainSide.Visible = true;
+      MainForm.MainFormMenu.Visible = true;
     }
 
     private void EventTest1(object sender, EventArgs e)
