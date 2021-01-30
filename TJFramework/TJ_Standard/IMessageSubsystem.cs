@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Telerik.WinControls;
 
 namespace TJFramework
 {
@@ -8,6 +9,8 @@ namespace TJFramework
     TJMessage Message(string header, string message);
 
     TJMessage Message(string header, string message, Control control);
+
+    TJMessage Message(string header, string message, RadElement element, bool fakeParameter);
 
     TJMessage Message(string header, string message, MsgPos position);
 

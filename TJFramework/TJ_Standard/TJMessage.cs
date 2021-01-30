@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Telerik.WinControls;
 using TJFramework.Standard;
 
 namespace TJFramework
@@ -25,7 +26,13 @@ namespace TJFramework
 
     [JsonIgnore]
     internal Control AlertControl { get; set; } = null;
+
+    [JsonIgnore]
+    internal RadElement AlertRadElement { get; set; } = null;
+
+
     internal Size AlertSize { get; set; } = TJStandard.ZeroSize ;
+
     internal Point AlertOffset { get; set; } = TJStandard.ZeroPoint;
 
     public TJMessage Position(MsgPos position)

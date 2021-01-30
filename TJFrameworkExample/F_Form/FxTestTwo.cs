@@ -35,6 +35,12 @@ namespace TJFrameworkExample
       BxTest6.Click += EventTest6;
       BxTestMainFormPanels.Click += EventTestMainFormPanels;
       BxHideMainFormPanels.Click += EventHideMainFormPanels;
+      BxTest10.Click += EventTest10;
+    }
+
+    private void EventTest10(object sender, EventArgs e)
+    {
+      Ms.Message("Это загловок окна", "Тестирование вывода сообщений на экран", null, false).Wire(BxTest10).Delay(5).CloseOnClick().Info();
     }
 
     private void EventHideMainFormPanels(object sender, EventArgs e)

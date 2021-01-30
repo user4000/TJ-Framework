@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using static TJFramework.Logger.Manager;
 
 namespace TJFramework
 {
   public class TJMessageManager : IMessageSubsystem
   {
-    public int ShortMessageAlertHeight { get; } = 32;
+    public const string TextLeftMargin = " ";
+
+    public int ShortMessageAlertHeight { get; } = 36;
 
     public TJMessage Message(string header, string message) => new TJMessage { Header = header, Text = message };
 
     public TJMessage Message(string header, string message, Control control) => new TJMessage { Header = header, Text = message, AlertControl = control };
+
+    public TJMessage Message(string header, string message, RadElement element, bool fakeParameter) => new TJMessage { Header = header, Text = message, AlertRadElement = element };
 
     public TJMessage Message(string header, string message, MsgPos position) => new TJMessage { Header = header, Text = message, AlertPosition = position };
 
@@ -42,7 +47,7 @@ namespace TJFramework
       =>
       new TJMessage
       {
-        Header = ShortMessage,
+        Header = TextLeftMargin + ShortMessage,
         MessageType = type,
         AlertControl = control,
         AlertPosition = position,
@@ -55,7 +60,7 @@ namespace TJFramework
       =>
       new TJMessage
       {
-        Header = ShortMessage,
+        Header = TextLeftMargin + ShortMessage,
         MessageType = MsgType.Debug,
         AlertControl = control,
         AlertPosition = position,

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using System.Runtime.Serialization.Formatters.Binary;
-using Telerik.WinControls.UI;
 using TJFramework.Tools;
+using Telerik.WinControls.UI;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TJFramework.ApplicationSettings
 {

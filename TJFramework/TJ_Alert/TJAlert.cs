@@ -13,7 +13,6 @@ namespace TJFramework
       FadeAnimationType = FadeAnimationType.None;
       AutoSize = true;
       CanMove = true;
-      Opacity = 0.9F;
       PopupAnimation = false;
       ShowOptionsButton = false;
     }

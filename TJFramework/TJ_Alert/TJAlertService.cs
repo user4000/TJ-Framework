@@ -50,7 +50,7 @@ namespace TJFramework
         ContentText = Message.Text.Length > AlertMessageMaxLength ? Message.Text.StringLeft(AlertMessageMaxLength) : Message.Text,
         AutoCloseDelay = Message.AutoCloseDelay > 0 ? Message.AutoCloseDelay : TJFrameworkManager.FrameworkSettings.SecondsAlertAutoClose
       };
-      
+
       Painter.SetColor(Alert, Message.MessageType);
       SetAlertPicture(Alert, Message);
       SetAlertFont(Alert);
@@ -64,7 +64,9 @@ namespace TJFramework
 
       Alert.Show();
 
-      CorrectAlertPosition(Alert, Message.AlertControl);
+      //CorrectAlertPosition(Alert, Message.AlertControl);
+      CorrectAlertPosition(Alert, Message.AlertControl, Message.AlertRadElement);
+
       MoveAlertToScreenCenter(Alert, Message.AlertPosition, Message.AlertControl);
       CheckAlertHasOffset(Alert, Message.AlertOffset);
       CheckPreviousAlert(Alert);
@@ -146,11 +148,51 @@ namespace TJFramework
       Alert.AutoCloseDelay = Message.AutoCloseDelay > 0 ? Message.AutoCloseDelay : TJFrameworkManager.FrameworkSettings.SecondsAlertAutoClose;
     }
 
+    private void CorrectAlertPosition(TJAlert Alert, Control AlertControl, RadElement AlertElement)
+    {
+      // Попробуем привязать координаты всплывающего окна к координатам элемента типа Control или RadElement //
+      if ((AlertControl == null) && (AlertElement == null)) return;
+      if (AlertElement != null)
+        CorrectAlertPosition(Alert, AlertElement);
+      else
+        CorrectAlertPosition(Alert, AlertControl);
+    }
+
+    private void CorrectAlertPosition(TJAlert Alert, RadElement AlertElement)
+    { // If alert window runs out of the screen we should correct its position //
+
+      if (AlertElement == null) return;
+      // Попробуем привязать координаты всплывающего окна к координатам элемента типа RadElement //
+      Point p = new Point(0, 0);
+      int AlertHeight = Alert.Popup.DisplayRectangle.Height;
+      int AlertWidth = Alert.Popup.DisplayRectangle.Width;
+
+      try
+      {
+        p = AlertElement.PointToScreen(Point.Empty);
+      }
+      catch
+      {
+        return;
+      }
+
+      if (p.Y < (ScreenHeight / 2))
+        p.Y += AlertElement.Size.Height + ConstDy;
+      else
+        p.Y -= (AlertHeight + ConstDy);
+
+      if (p.X < 0) p.X = ConstDx;
+
+      if ((p.X + AlertWidth) > ScreenWidth) p.X = ScreenWidth - AlertWidth - ConstDx;
+
+      Alert.Popup.Location = p;
+    }
+
     private void CorrectAlertPosition(TJAlert Alert, Control AlertControl)
     { // If alert window runs out of the screen we should correct its position //
 
       if (AlertControl == null) return;
-
+      // Попробуем привязать координаты всплывающего окна к координатам элемента типа Control //
       Point p = new Point(0, 0);
       int AlertHeight = Alert.Popup.DisplayRectangle.Height;
       int AlertWidth = Alert.Popup.DisplayRectangle.Width;
@@ -210,7 +252,7 @@ namespace TJFramework
       {
         item?.Hide(); item?.Dispose();
         if (i++ > 100) break;
-      }      
+      }
     }
 
     private string TestQueueAlert()
