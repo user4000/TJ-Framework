@@ -57,7 +57,9 @@ namespace TJFramework
 
     public Action<string> EventPageChanged { get; set; } = null;
 
-    public Task EventBeforeMainFormCloseAsync { get; set; } = null;
+    public Func<Task> FuncBeforeMainFormClose { get; set; } = null;
+
+
 
     internal string StartPageName { get; private set; } = string.Empty;
 
@@ -399,19 +401,20 @@ namespace TJFramework
     {
       UserHasClickedExit = true;
       EventBeforeMainFormClose?.Invoke();
-      if (EventBeforeMainFormCloseAsync != null)
+      if (FuncBeforeMainFormClose != null)
       {
         VisualEffectFadeOut();
         Application.DoEvents();
         MainForm.Opacity = 0;
         MainForm.ShowInTaskbar = false;
         Application.DoEvents();
-        await EventBeforeMainFormCloseAsync;
+        Task task = FuncBeforeMainFormClose();
+        await task;
         Application.DoEvents();
       }
       MainPageViewManager.LaunchCloseHandlerOfEachChildForm();
       TJFrameworkManager.FrameworkSettings.Save();
-      if (EventBeforeMainFormCloseAsync == null) VisualEffectFadeOut();
+      if (FuncBeforeMainFormClose == null) VisualEffectFadeOut();
       MainForm.Close();
     }
   }

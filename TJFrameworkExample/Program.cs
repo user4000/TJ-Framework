@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using TJFramework;
@@ -81,10 +82,20 @@ namespace TJFrameworkExample
         FrameworkSettings.PropertyGridPadding = new Padding(155, 100, 45, 25);
 
         // Привязка различных событий фреймворка к методам класса CxManager //
-        TJFrameworkManager.Service.EventPageChanged = Manager.EventPageChanged;
-        TJFrameworkManager.Service.EventBeforeMainFormClose = Manager.EventBeforeMainFormClose;
-        TJFrameworkManager.Service.EventBeforeMainFormCloseAsync = Manager.EventBeforeMainFormCloseAsync();
+
+        //TJFrameworkManager.Service.EventPageChanged = Manager.EventPageChanged;
+        //TJFrameworkManager.Service.EventBeforeMainFormClose = Manager.EventBeforeMainFormClose;
       };
+
+
+      Func<Task> fnEventBeforeMainFormCloseAsync = async () =>
+      {
+        await Manager.EventBeforeMainFormCloseAsync();
+      };
+
+
+      TJFrameworkManager.Service.EventBeforeMainFormClose = Manager.EventBeforeMainFormClose;
+      TJFrameworkManager.Service.FuncBeforeMainFormClose = fnEventBeforeMainFormCloseAsync;
 
       TJFrameworkManager.Run();
     }

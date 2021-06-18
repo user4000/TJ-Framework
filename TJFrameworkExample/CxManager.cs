@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls.UI;
+using System.Threading.Tasks;
 using TJFramework;
-using System.Reflection;
 using TJFramework.Form;
 using static TJFramework.Logger.Manager;
 
@@ -52,18 +50,19 @@ namespace TJFrameworkExample
     private void EventMainFormResizeBegin(object sender, EventArgs e) => MainFormIsBeingResized = true;
 
 
-
     internal void EventBeforeMainFormClose()
     {
-      //Log.Save(MsgType.Debug, "Test", "EventBeforeMainFormClose()");
+      Log.Save(MsgType.Debug, "EventBeforeMainFormClose() Test", "EventBeforeMainFormClose()");
     }
+
 
     internal async Task EventBeforeMainFormCloseAsync()
     {
-      Log.Save(MsgType.Debug, "Начало", "Эмуляция долго выполняющейся задачи");
+      Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Начало", "Эмуляция долго выполняющейся задачи");
       await Task.Delay(9000);
-      Log.Save(MsgType.Debug, "Окончание", "Эмуляция долго выполняющейся задачи");
+      Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Окончание", "Эмуляция долго выполняющейся задачи");
     }
+
 
     internal void EventPropertyValueChanged(string PropertyName)
     {
