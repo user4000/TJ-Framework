@@ -12,7 +12,7 @@ namespace TJFramework.Standard
       string output = string.Empty;
       string error = string.Empty;
 
-      Encoding enc = XxEncoding.GetEncoding(encoding);
+      Encoding enc = XxEncoding.ZzGetEncoding(encoding);
 
       ProcessStartInfo psi = new ProcessStartInfo(command, parameters)
       {

@@ -80,7 +80,7 @@ namespace TJFramework.ApplicationSettings
       return settings;
     }
 
-    public void SaveToJSONFile(string FileContainingSettings = DefaultTextFileName)
+    public void SaveToJsonFile(string FileContainingSettings = DefaultTextFileName)
     {
       FileContainingSettings = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(FileContainingSettings);
       CreateDirectoryForSettings(FileContainingSettings);

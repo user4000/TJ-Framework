@@ -31,12 +31,12 @@ namespace TJFramework.Form
 
     public void SetEvents()
     {
-      BtnShowDetailMessage.Click += EventButtonShowDetailMessageClick;
-      BtnTest.Click += CxLog.EventTestButtonClick;
-      BtnCopyToClipboard.Click += CxLog.EventCopyMessageToClipboard;
-      BtnFilter.Click += EventButtonFilterClick;
-      BtnSearchField.Click += EventButtonClickSearchField;
-      BtnClearTable.Click += EventClearTable;
+      BtnShowDetailMessage.Click += new EventHandler(EventButtonShowDetailMessageClick);
+      BtnTest.Click += new EventHandler(CxLog.EventTestButtonClick);
+      BtnCopyToClipboard.Click += new EventHandler(CxLog.EventCopyMessageToClipboard);
+      BtnFilter.Click += new EventHandler(EventButtonFilterClick);
+      BtnSearchField.Click += new EventHandler(EventButtonClickSearchField);
+      BtnClearTable.Click += new EventHandler(EventClearTable);
     }
 
     private async void EventClearTable(object sender, EventArgs e)

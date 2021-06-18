@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Telerik.WinControls;
+using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using TJFramework.Standard;
 
@@ -16,7 +15,7 @@ namespace TJFramework.Extensions
       if (DList.Popup.IsDisplayed == false) return;
 
       if (DList.Text.Trim() == string.Empty) { DList.FilterExpression = ""; return; }
-      DList.FilterExpression =   $"{nameof(MxSimpleEntity.NameObject)} LIKE '%{DList.Text}%'";
+      DList.FilterExpression = $"{nameof(MxSimpleEntity.NameObject)} LIKE '%{DList.Text}%'";
     }
 
     public static void ZzSetClassificatorStandardVisualStyle(this RadDropDownList DDList, SizingMode mode = SizingMode.None)
@@ -25,8 +24,8 @@ namespace TJFramework.Extensions
       DDList.DropDownListElement.ListElement.Font = DDList.Font;
       DDList.DropDownSizingMode = mode;
       DDList.AutoCompleteMode = AutoCompleteMode.None;
-      DDList.KeyUp += EventDropDownListKeyUp;
-      DDList.TextChanged += EventTextChanged;
+      DDList.KeyUp += new KeyEventHandler(EventDropDownListKeyUp);
+      DDList.TextChanged += new EventHandler(EventTextChanged);
     }
 
     private static void EventTextChanged(object sender, EventArgs e)

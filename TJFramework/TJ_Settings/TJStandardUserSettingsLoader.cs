@@ -7,7 +7,7 @@ namespace TJFramework.ApplicationSettings
   {
     private const string DefaultTextFileName = TJStandardApplicationSettings.DefaultTextFileName ;
 
-    public static T LoadFromJSONFile(string FileName = DefaultTextFileName)
+    public static T LoadFromJsonFile(string FileName = DefaultTextFileName)
     {
       FileName = TJFrameworkManager.CheckIfSettingSubFolderIsSpecified(FileName);
       T t = default(T);
@@ -20,9 +20,3 @@ namespace TJFramework.ApplicationSettings
     }
   }
 }
-
-
-
-
-
-

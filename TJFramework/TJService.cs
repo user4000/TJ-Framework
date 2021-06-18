@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
-using TJFramework.ApplicationSettings;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using TJFramework.Form;
+using TJFramework.ApplicationSettings;
 using static TJFramework.Logger.Manager;
 using static TJFramework.TJFrameworkManager;
 
@@ -55,9 +55,11 @@ namespace TJFramework
 
     public Action EventBeforeMainFormClose { get; set; } = null;
 
+    public Func<Task> FuncBeforeMainFormClose { get; set; } = null;
+
     public Action<string> EventPageChanged { get; set; } = null;
 
-    public Func<Task> FuncBeforeMainFormClose { get; set; } = null;
+
 
 
 
@@ -163,7 +165,7 @@ namespace TJFramework
       if ((radForm is FxExit) && (FormExit == null))
       {
         FormExit = (FxExit)radForm;
-        FormExit.BtnExit.Click += async (s, e) => await EventButtonExitClick(s, e);
+        FormExit.BtnExit.Click += new EventHandler(EventButtonExitClick);
       }
     }
 
@@ -176,7 +178,7 @@ namespace TJFramework
       }
     }
 
-    private async Task EventButtonExitClick(object sender, EventArgs e)
+    private async void EventButtonExitClick(object sender, EventArgs e)
     {
       FormExit.BtnExit.Enabled = false;
       FormExit.BtnExit.Visible = false;
@@ -213,7 +215,7 @@ namespace TJFramework
       T settingsDefault = new T(); // Create instance of concrete user settings //
       T localSettingsCurrent = settingsDefault;
       /* Since JSON Serializer cannot save attributes of members of [Settings] class we need this workaround */
-      try { localSettingsCurrent = TJStandardUserSettingsLoader<T>.LoadFromJSONFile(); }
+      try { localSettingsCurrent = TJStandardUserSettingsLoader<T>.LoadFromJsonFile(); }
       catch { localSettingsCurrent = settingsDefault; }
 
       CurrentApplicationSettings = localSettingsCurrent;
@@ -306,12 +308,12 @@ namespace TJFramework
         MainForm.Show(); MainForm.WindowState = FormWindowState.Normal; MainForm.MyNotifyIcon.Visible = false;
       }
 
-      MainForm.Load += EventMainFormLoad;
-      MainForm.Shown += EventMainFormShown;
-      MainForm.ResizeBegin += EventMainFormResizeBegin;
-      MainForm.ResizeEnd += EventMainFormResizeEnd;
-      MainForm.Resize += EventMainFormResize;
-      MainForm.MyNotifyIcon.MouseDoubleClick += EventNotifyIconMouseDoubleClick;
+      MainForm.Load += new EventHandler(EventMainFormLoad);
+      MainForm.Shown += new EventHandler(EventMainFormShown);
+      MainForm.ResizeBegin += new EventHandler(EventMainFormResizeBegin);
+      MainForm.ResizeEnd += new EventHandler(EventMainFormResizeEnd);
+      MainForm.Resize += new EventHandler(EventMainFormResize);
+      MainForm.MyNotifyIcon.MouseDoubleClick += new MouseEventHandler(EventNotifyIconMouseDoubleClick);
     }
 
     public void SetIcons(Icon MainFormIcon, Icon NotifyIcon = null)
@@ -372,29 +374,31 @@ namespace TJFramework
       }
     }
 
+    private async void EventSelectedPageChanged(object sender, EventArgs e)
+    {
+      string PageName = MainPageView.SelectedPage.Name;
+
+      if (EventPageChanged != null) EventPageChanged.Invoke(PageName);
+
+      if (CheckPage<FxSettings>(PageName))
+      {
+        FormSettings.EventUserVisitedThisPage();
+      }
+
+      if (CheckPage<FxExit>(PageName))
+      {
+        if (FormExit.ExitWithoutConfirmation) await MainExit();
+      }
+
+      if (CheckPage<FxLog>(PageName))
+      {
+        FormLog.EventUserVisitedThisPage();
+      }
+    }
+
     internal void SetEventMainPageViewSelectedPageChanged()
     {
-      MainPageView.SelectedPageChanged += async (s, e) =>
-      {
-        string PageName = MainPageView.SelectedPage.Name;
-
-        if (EventPageChanged != null) EventPageChanged.Invoke(PageName);
-
-        if (CheckPage<FxSettings>(PageName))
-        {
-          FormSettings.EventUserVisitedThisPage();
-        }
-
-        if (CheckPage<FxExit>(PageName))
-        {
-          if (FormExit.ExitWithoutConfirmation) await MainExit();
-        }
-
-        if (CheckPage<FxLog>(PageName))
-        {
-          FormLog.EventUserVisitedThisPage();
-        }
-      };
+      MainPageView.SelectedPageChanged += new EventHandler(EventSelectedPageChanged);
     }
 
     internal async Task MainExit()
@@ -409,7 +413,7 @@ namespace TJFramework
         MainForm.ShowInTaskbar = false;
         Application.DoEvents();
         Task task = FuncBeforeMainFormClose();
-        await task;
+        if (task != null) await task;
         Application.DoEvents();
       }
       MainPageViewManager.LaunchCloseHandlerOfEachChildForm();

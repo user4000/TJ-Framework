@@ -34,10 +34,13 @@ namespace TJFramework.Standard
     internal virtual void InitializeGrid(RadGridView grid, bool SetAnotherTheme = false)
     {
       Grid = grid;
+
       //if (SetAnotherTheme) Grid.ThemeName = ThemeForGrid.ThemeName;
+
       MGridViewTemplate = Grid.MasterTemplate;
       SetDataViewControlProperties();
-      Grid.CellEditorInitialized += EventCellEditorInitialized;
+      Grid.CellEditorInitialized += new GridViewCellEventHandler(EventCellEditorInitialized);
+
       //TODO: Раскомментируйте если не нравится цвет выделенной строки и ячейки 
       //Grid.RowFormatting += new RowFormattingEventHandler(EventRowFormatting);
       //Grid.CellFormatting += new CellFormattingEventHandler(EventCellFormatting);

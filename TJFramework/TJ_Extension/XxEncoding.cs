@@ -4,7 +4,7 @@ namespace TJFramework.Extensions
 {
   public static class XxEncoding
   {
-    public static Encoding GetEncoding(string encoding)
+    public static Encoding ZzGetEncoding(string encoding)
     {
       Encoding enc = null;
       try

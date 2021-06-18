@@ -144,6 +144,17 @@ namespace TJFramework
       return PageName;
     }
 
+    public bool IsPageSelected(string pageUniqueName)
+    {
+      if (PageExists(pageUniqueName) == false) return false;
+      return (MainPageView.SelectedPage == GetPageByUniqueName(pageUniqueName));
+    }
+
+    public bool IsPageSelected<T>() where T : RadForm
+    {
+      return IsPageSelected(GetUniquePageName<T>());
+    }
+
     public void GotoPage(string pageUniqueName)
     {
       if (PageExists(pageUniqueName))
@@ -210,12 +221,14 @@ namespace TJFramework
 
     internal void LaunchStartHandlerOfEachChildForm()
     {
-      foreach (KeyValuePair<string, TJChildForm> entry in DictionaryChildForms) entry.Value.LaunchStartHandler();
+      foreach (KeyValuePair<string, TJChildForm> entry in DictionaryChildForms)
+        entry.Value.LaunchStartHandler();
     }
 
     internal void LaunchCloseHandlerOfEachChildForm()
     {
-      foreach (KeyValuePair<string, TJChildForm> entry in DictionaryChildForms) entry.Value.LaunchEndHandler();
+      foreach (KeyValuePair<string, TJChildForm> entry in DictionaryChildForms)
+        entry.Value.LaunchEndHandler();
     }
   }
 }

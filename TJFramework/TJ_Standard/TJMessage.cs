@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 using Telerik.WinControls;
 using TJFramework.Standard;
 
@@ -112,10 +112,16 @@ namespace TJFramework
     public void Create() => TJFrameworkManager.Ms.Create(this);
 
     public void Debug() { MessageType = MsgType.Debug; Create(); }
+
     public void Info() { MessageType = MsgType.Info; Create(); }
+
     public void Ok() { MessageType = MsgType.Ok; Create(); }
+
     public void Fail() { MessageType = MsgType.Fail; Create(); }
+
     public void Warning() { MessageType = MsgType.Warning; Create(); }
+
     public void Error() { MessageType = MsgType.Error; Create(); }
+
   }
 }

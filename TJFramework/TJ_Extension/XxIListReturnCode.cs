@@ -4,9 +4,9 @@ namespace TJFramework.Extensions
 {
   public static class XxIListReturnCode
   {
-    public static TTReturnCode ZZFirst<TTReturnCode>(this IList<TTReturnCode> items) where TTReturnCode : new()
+    public static T ZzFirst<T>(this IList<T> items) where T : new()
     {
-      TTReturnCode code = default(TTReturnCode);
+      T code = default(T);
       try { code = items[0]; } catch { }
       return code;
     }

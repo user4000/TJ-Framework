@@ -12,6 +12,6 @@ namespace TJFramework.Logger
     public static bool rollOnFileSizeLimit = true;
     public static bool buffered = false;
     public static bool shared = false;
-    public static TimeSpan flushToDiskInterval = TimeSpan.FromMinutes(1);
+    public static TimeSpan flushToDiskInterval = TimeSpan.FromSeconds(30);
   }
 }

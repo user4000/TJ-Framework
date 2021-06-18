@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
 using Telerik.WinControls;
+using System.Windows.Forms;
+using System.ComponentModel;
 using Telerik.WinControls.UI;
 
 namespace TJFramework.Extensions

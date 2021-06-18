@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Telerik.WinControls.Data;
-using Telerik.WinControls.UI;
 using TJFramework.Standard;
+using Telerik.WinControls.UI;
+using Telerik.WinControls.Data;
+using System.Collections.Generic;
 
 namespace TJFramework.Extensions
 {
@@ -78,7 +76,7 @@ namespace TJFramework.Extensions
       if (collection.Count<GridViewDataColumn>() == 1) return collection.First().Width; else return -1;
     }
 
-    public static bool ZZIsColumnVisibleByFieldName(this RadGridView grid, string FieldName)
+    public static bool ZzIsColumnVisibleByFieldName(this RadGridView grid, string FieldName)
     {
       GridViewDataColumn[] collection = grid.Columns.GetColumnByFieldName(FieldName);
       if (collection.Count<GridViewDataColumn>() == 1) return collection.First().IsVisible; else return false;

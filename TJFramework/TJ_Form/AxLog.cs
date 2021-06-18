@@ -101,9 +101,9 @@ namespace TJFramework.Form
 
     internal void SetEvents()
     {
-      Grid.SizeChanged += EventGridSizeChanged;
-      Grid.DoubleClick += EventGridDoubleClick;
-      Grid.SelectionChanged += EventGridSelectionChanged;
+      Grid.SizeChanged += new EventHandler(EventGridSizeChanged);
+      Grid.DoubleClick += new EventHandler(EventGridDoubleClick);
+      Grid.SelectionChanged += new EventHandler(EventGridSelectionChanged);
       //Grid.RowHeightChanging += EventGridRowHeightChanging;
       //Grid.CellFormatting += new CellFormattingEventHandler(EventCellFormatting);
       //Grid.RowFormatting += new RowFormattingEventHandler(EventRowFormatting);

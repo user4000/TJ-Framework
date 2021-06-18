@@ -11,7 +11,7 @@ using static TJFramework.TJFrameworkManager;
 namespace TJFramework.FrameworkSettings
 {
   [JsonObject(MemberSerialization.OptIn)]
-  public class TJStandardFrameworkSettings : TJStandardJSONSettings<TJStandardFrameworkSettings>
+  public class TJStandardFrameworkSettings : TJStandardJsonSettings<TJStandardFrameworkSettings>
   {
     private Font pageViewFont = new Font("Verdana", 9, FontStyle.Regular, GraphicsUnit.Point, 204);
 

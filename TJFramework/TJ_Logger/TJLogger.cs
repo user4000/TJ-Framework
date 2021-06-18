@@ -23,6 +23,10 @@ namespace TJFramework.Logger
       }
     }
 
+    public void Save(string header, string message) => Save(MsgType.Debug, header, message);
+
+    public void Save(string message) => Save(MsgType.Debug, string.Empty, message);
+
     public void Save(Exception exception, string message, MsgType type = MsgType.Warning)
     {
       if (IsActive() == false) return;

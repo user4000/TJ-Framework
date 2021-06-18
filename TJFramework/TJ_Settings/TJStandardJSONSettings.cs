@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace TJFramework.ApplicationSettings
 {
-  public class TJStandardJSONSettings<T> where T : new()
+  public class TJStandardJsonSettings<T> where T : new()
   {
     public const string DefaultFolderUserSettings = TJStandardApplicationSettings.DefaultFolderUserSettings; // "settings";
 

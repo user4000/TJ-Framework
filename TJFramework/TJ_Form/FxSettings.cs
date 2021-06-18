@@ -50,13 +50,13 @@ namespace TJFramework.Form
       BtnSaveSettings.Left = GxProperty.Padding.Left;
       GxProperty.PropertyValueChanged += new PropertyGridItemValueChangedEventHandler(EventPropertyValueChanged);
       GxProperty.ItemFormatting += new PropertyGridItemFormattingEventHandler(EventItemFormatting);
-      BtnSaveSettings.Click += BtnSaveSettingsClick;
+      BtnSaveSettings.Click +=  new EventHandler(BtnSaveSettingsClick);
     }
 
     private string SaveSettings()
     {
       string error = string.Empty;
-      try { GetCurrentSettings().SaveToJSONFile(); }
+      try { GetCurrentSettings().SaveToJsonFile(); }
       catch (Exception ex) { error = ex.Message; };
       return error;
     }
@@ -86,6 +86,7 @@ namespace TJFramework.Form
     private void FormatSubItem(PropertyGridItemFormattingEventArgs e, PropertyGridItem item)
     {
       if (item != null)
+      {
         if (item.Level > 0)
         {
           e.VisualElement.ForeColor = Color.DarkMagenta;
@@ -94,6 +95,7 @@ namespace TJFramework.Form
         {
           e.VisualElement.ResetValue(LightVisualElement.ForeColorProperty, ValueResetFlags.Local);
         }
+      }
     }
 
     private void FormatConstantValue(PropertyGridItemFormattingEventArgs e, PropertyGridItem item)

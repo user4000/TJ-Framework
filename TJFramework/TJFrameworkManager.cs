@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using TJFramework.FrameworkSettings;
+﻿using TJFramework.Form;
 using TJFramework.Logger;
-using TJFramework.Form;
+using System.Windows.Forms;
+using TJFramework.FrameworkSettings;
+using System.Text.RegularExpressions;
 
 namespace TJFramework
 {
