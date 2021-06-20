@@ -68,16 +68,16 @@
       this.PnMain.Controls.Add(this.MainPageView);
       this.PnMain.Controls.Add(this.PnMainSide);
       this.PnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.PnMain.Location = new System.Drawing.Point(0, 63);
+      this.PnMain.Location = new System.Drawing.Point(0, 68);
       this.PnMain.Name = "PnMain";
-      this.PnMain.Size = new System.Drawing.Size(792, 507);
+      this.PnMain.Size = new System.Drawing.Size(792, 502);
       this.PnMain.TabIndex = 0;
       // 
       // SplitterMainVertical
       // 
       this.SplitterMainVertical.Location = new System.Drawing.Point(45, 0);
       this.SplitterMainVertical.Name = "SplitterMainVertical";
-      this.SplitterMainVertical.Size = new System.Drawing.Size(5, 507);
+      this.SplitterMainVertical.Size = new System.Drawing.Size(5, 502);
       this.SplitterMainVertical.TabIndex = 2;
       this.SplitterMainVertical.TabStop = false;
       // 
@@ -87,7 +87,7 @@
       this.MainPageView.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.MainPageView.Location = new System.Drawing.Point(45, 0);
       this.MainPageView.Name = "MainPageView";
-      this.MainPageView.Size = new System.Drawing.Size(747, 507);
+      this.MainPageView.Size = new System.Drawing.Size(747, 502);
       this.MainPageView.TabIndex = 1;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemCloseButton = false;
@@ -97,7 +97,7 @@
       this.PnMainSide.Dock = System.Windows.Forms.DockStyle.Left;
       this.PnMainSide.Location = new System.Drawing.Point(0, 0);
       this.PnMainSide.Name = "PnMainSide";
-      this.PnMainSide.Size = new System.Drawing.Size(45, 507);
+      this.PnMainSide.Size = new System.Drawing.Size(45, 502);
       this.PnMainSide.TabIndex = 0;
       ((Telerik.WinControls.Primitives.FillPrimitive)(this.PnMainSide.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0);
       ((Telerik.WinControls.Primitives.BorderPrimitive)(this.PnMainSide.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(0);
@@ -133,8 +133,8 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(792, 570);
-      this.Controls.Add(this.SplitterMainHorizontal);
       this.Controls.Add(this.PnMain);
+      this.Controls.Add(this.SplitterMainHorizontal);
       this.Controls.Add(this.PnMainTop);
       this.Controls.Add(this.MainFormMenu);
       this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

@@ -58,7 +58,7 @@ namespace TJFrameworkExample
       MainForm.SplitterMainVertical.Visible = true;
       MainForm.PnMainTop.Visible = true;
       MainForm.PnMainSide.Visible = true;
-      MainForm.MainFormMenu.Visible = true;
+      MainForm.MainFormMenu.Visible = true;   
     }
 
     private void EventTest1(object sender, EventArgs e)

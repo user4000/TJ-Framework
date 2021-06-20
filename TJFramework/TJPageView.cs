@@ -39,7 +39,7 @@ namespace TJFramework
         mainForm.MainFormMenu.Visible = false;
 
         mainForm.PnMainTop.MaximumSize = new Size(0, 50);
-        mainForm.PnMainSide.MaximumSize = new Size(200, 0);
+        mainForm.PnMainSide.MaximumSize = new Size(400, 0);
 
         mainForm.PnMainTop.MinimumSize = new Size(0, mainForm.PnMainTop.Size.Height);
         mainForm.PnMainSide.MinimumSize = new Size(mainForm.PnMainSide.Size.Width, 0);
