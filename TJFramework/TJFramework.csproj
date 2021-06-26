@@ -163,10 +163,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TJMessageManager.cs" />
-    <Compile Include="TJFrameworkManager.cs" />
-    <Compile Include="TJPageView.cs" />
-    <Compile Include="TJService.cs" />
+    <Compile Include="Z_Management\Main\StartWork.cs" />
+    <Compile Include="Z_Management\Message\TJMessageManager.cs" />
+    <Compile Include="Z_Management\Main\TJFrameworkManager.cs" />
+    <Compile Include="Z_Management\PageView\AcCreatePageView.cs" />
+    <Compile Include="Z_Management\PageView\AcPublicMethods.cs" />
+    <Compile Include="Z_Management\PageView\TJPageView.cs" />
+    <Compile Include="Z_Management\Service\AcApplicationSettings.cs" />
+    <Compile Include="Z_Management\Service\AcChildForms.cs" />
+    <Compile Include="Z_Management\Service\AcMainExit.cs" />
+    <Compile Include="Z_Management\Service\AcMainForm.cs" />
+    <Compile Include="Z_Management\Service\AcMainFormEvents.cs" />
+    <Compile Include="Z_Management\Service\AcPrepareToStartApplication.cs" />
+    <Compile Include="Z_Management\Service\AcVisualEffect.cs" />
+    <Compile Include="Z_Management\Service\ClassMembers.cs" />
+    <Compile Include="Z_Management\Service\TJService.cs" />
     <Compile Include="TJ_Alert\TJAlert.cs" />
     <Compile Include="TJ_Alert\TJAlertPainter.cs" />
     <Compile Include="TJ_Alert\TJAlertService.cs" />
@@ -221,7 +232,7 @@
       <DependentUpon>FxSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TJ_Form\TJChildForm.cs" />
+    <Compile Include="TJ_ChildForm\TJChildForm.cs" />
     <Compile Include="TJ_Grid\TJGridManager.cs" />
     <Compile Include="TJ_Logger\TJLogger.cs" />
     <Compile Include="TJ_Logger\TJLoggerConfiguration.cs" />
@@ -239,6 +250,7 @@
     <Compile Include="TJ_Standard\TJConvert.cs" />
     <Compile Include="TJ_Standard\TJStandardJsonSerializerSetting.cs" />
     <Compile Include="TJ_Standard\TJTool.cs" />
+    <Compile Include="Z_Management\ThemeManager\CxThemeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -266,4 +278,7 @@
     <Content Include="iconfinder_free-15_463002.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call c:\output\TJFramework\a_copy_dll_to_packages.bat</PostBuildEvent>
+  </PropertyGroup>
 </Project>

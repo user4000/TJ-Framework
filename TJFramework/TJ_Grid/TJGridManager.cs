@@ -18,6 +18,7 @@ namespace TJFramework.Standard
     internal static int MinimumDropDownWidth { get; } = 300;
     internal static int MaximumDropDownHeight { get; } = 200;
 
+
     //public static VisualStudio2012LightTheme ThemeForGrid { get; } = new VisualStudio2012LightTheme();
 
     internal static Color ColorRow { get; } = Color.WhiteSmoke;
@@ -177,7 +178,7 @@ namespace TJFramework.Standard
       if (table != null)
       {
         GridViewComboBoxColumn combobox = (dc as GridViewComboBoxColumn);
-        if (combobox == null) MessageBox.Show("Ошибка! Неправильно указан тип столбца грида - должен быть GridViewComboBoxColumn.");
+        if (combobox == null) MessageBox.Show("Error! Wrong type of the column! The type should be <<GridViewComboBoxColumn>>");
         combobox.DataSource = table;
         combobox.ValueMember = valueMember == "" ? nameof(MxSimpleEntity.IdObject) : valueMember;
         combobox.DisplayMember = displayMember == "" ? nameof(MxSimpleEntity.NameObject) : displayMember;
@@ -198,7 +199,7 @@ namespace TJFramework.Standard
       if (list != null)
       {
         GridViewComboBoxColumn combobox = (dc as GridViewComboBoxColumn);
-        if (combobox == null) MessageBox.Show("Ошибка! Неправильно указан тип столбца грида - должен быть GridViewComboBoxColumn.");
+        if (combobox == null) MessageBox.Show("Error! Wrong type of the column! The type should be <<GridViewComboBoxColumn>>");
         combobox.DataSource = list;
         combobox.ValueMember = nameof(MxSimpleEntity.IdObject);
         combobox.DisplayMember = nameof(MxSimpleEntity.NameObject);
@@ -282,4 +283,3 @@ namespace TJFramework.Standard
     }
   }
 }
-

@@ -1,33 +1,33 @@
 ﻿namespace TJFramework.Form
 {
-    partial class FxMain
+  partial class FxMain
+  {
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+      if (disposing && (components != null))
+      {
+        components.Dispose();
+      }
+      base.Dispose(disposing);
+    }
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    #region Windows Form Designer generated code
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FxMain));
       this.MyNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -61,6 +61,7 @@
       this.PnMainTop.Name = "PnMainTop";
       this.PnMainTop.Size = new System.Drawing.Size(792, 35);
       this.PnMainTop.TabIndex = 0;
+      this.PnMainTop.Visible = false;
       // 
       // PnMain
       // 
@@ -80,9 +81,11 @@
       this.SplitterMainVertical.Size = new System.Drawing.Size(5, 502);
       this.SplitterMainVertical.TabIndex = 2;
       this.SplitterMainVertical.TabStop = false;
+      this.SplitterMainVertical.Visible = false;
       // 
       // MainPageView
       // 
+      this.MainPageView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(228)))), ((int)(((byte)(241)))));
       this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
       this.MainPageView.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.MainPageView.Location = new System.Drawing.Point(45, 0);
@@ -91,6 +94,8 @@
       this.MainPageView.TabIndex = 1;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemCloseButton = false;
+      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(222)))), ((int)(((byte)(250)))));
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.MainPageView.GetChildAt(0).GetChildAt(1))).BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(204)))), ((int)(((byte)(236)))));
       // 
       // PnMainSide
       // 
@@ -99,6 +104,7 @@
       this.PnMainSide.Name = "PnMainSide";
       this.PnMainSide.Size = new System.Drawing.Size(45, 502);
       this.PnMainSide.TabIndex = 0;
+      this.PnMainSide.Visible = false;
       ((Telerik.WinControls.Primitives.FillPrimitive)(this.PnMainSide.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0);
       ((Telerik.WinControls.Primitives.BorderPrimitive)(this.PnMainSide.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(0);
       // 
@@ -110,6 +116,7 @@
       this.SplitterMainHorizontal.Size = new System.Drawing.Size(792, 5);
       this.SplitterMainHorizontal.TabIndex = 1;
       this.SplitterMainHorizontal.TabStop = false;
+      this.SplitterMainHorizontal.Visible = false;
       // 
       // MainFormMenu
       // 
@@ -121,6 +128,7 @@
       this.MainFormMenu.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
       this.MainFormMenu.Size = new System.Drawing.Size(792, 28);
       this.MainFormMenu.TabIndex = 0;
+      this.MainFormMenu.Visible = false;
       // 
       // MenuItemFirstItem
       // 
@@ -156,7 +164,7 @@
       this.ResumeLayout(false);
       this.PerformLayout();
 
-        }
+    }
 
     #endregion
 

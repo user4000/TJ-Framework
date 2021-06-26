@@ -1,12 +1,15 @@
-﻿using TJFramework.Form;
+﻿using System;
+using System.Threading;
+using TJFramework.Form;
 using TJFramework.Logger;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 using TJFramework.FrameworkSettings;
 using System.Text.RegularExpressions;
 
 namespace TJFramework
 {
-  public class TJFrameworkManager
+  public partial class TJFrameworkManager
   {
     public static FxMain MainForm { get; private set; } = null;
 
@@ -22,18 +25,17 @@ namespace TJFramework
 
     public static TJStandardFrameworkSettings FrameworkSettings { get; } = new TJStandardFrameworkSettings();
 
-    public static void Run() => Application.Run(CreateMainForm());
 
-    public static FxMain CreateMainForm()
-    {
-      if (MainForm == null)
-      {
-        MainForm = new FxMain();
-        Service.InitMainForm(MainForm);
-        Service.SetEventsForMainForm();
-      }
-      return MainForm;
-    }
+    private static System.Windows.Forms.Timer TmStart { get; } = new System.Windows.Forms.Timer();
+
+
+
+
+
+
+
+
+
 
     internal static string SettingSubFolderName { get; set; } = string.Empty;
 
@@ -70,4 +72,3 @@ namespace TJFramework
     }
   }
 }
-

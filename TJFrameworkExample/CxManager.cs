@@ -58,9 +58,9 @@ namespace TJFrameworkExample
 
     internal async Task EventBeforeMainFormCloseAsync()
     {
-      Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Начало", "Эмуляция долго выполняющейся задачи");
-      await Task.Delay(9000);
-      Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Окончание", "Эмуляция долго выполняющейся задачи");
+      //Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Начало", "Эмуляция долго выполняющейся задачи");
+      await Task.Delay(1000);
+      //Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Окончание", "Эмуляция долго выполняющейся задачи");
     }
 
 

@@ -46,10 +46,29 @@ namespace TJFrameworkExample
       TJFrameworkManager.Logger.Create(Assembly.GetExecutingAssembly().GetName().Name);
 
       TJFrameworkManager.Service.CreateApplicationSettings<MySettings>(Assembly.GetExecutingAssembly().GetName().Name);
-      TJFrameworkManager.Service.AddForm<FxTestOne>("Это форма номер 1");
-      TJFrameworkManager.Service.AddForm<FxTestTwo>("Тест вторая форма привет вам друзья");
-      TJFrameworkManager.Service.AddForm<FxTestThree>("Number 3");
+
+
+
+
+
+
+
+
+      TJFrameworkManager.Service.AddForm<FxTestOne>("Это форма номер 1", true, true);
+
+      TJFrameworkManager.Service.AddForm<FxTestTwo>("Тест вторая форма привет вам друзья", false, true);
+
+      TJFrameworkManager.Service.AddForm<FxTestThree>("Number 3", true, false);
+
       TJFrameworkManager.Service.StartPage<FxTestTwo>();
+
+
+
+
+
+
+
+
       TJFrameworkManager.Service.SetMainFormCaption("Привет! Это главная форма 123.");
       //TJFrameworkManager.Service.SetMainPageViewOrientation(StripViewAlignment.Left);
 

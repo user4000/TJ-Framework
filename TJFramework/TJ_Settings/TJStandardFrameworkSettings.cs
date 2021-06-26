@@ -13,6 +13,27 @@ namespace TJFramework.FrameworkSettings
   [JsonObject(MemberSerialization.OptIn)]
   public class TJStandardFrameworkSettings : TJStandardJsonSettings<TJStandardFrameworkSettings>
   {
+
+    private int tabMinWidth = 100;
+
+    public int TabMinimumWidth // Минимальная ширина вкладки //
+    {
+      get => tabMinWidth;
+      set
+      {
+        bool ValueIsOk = ((value >= 50) && (value <= 500));
+        if (ValueIsOk)
+          tabMinWidth = value;
+        else
+          tabMinWidth = 100;
+      }
+    }
+
+    public string ThemeName { get; set; } = string.Empty; // Если пользователь задаст это значение, то фреймворк постарается найти и применить данную тему //
+
+    public bool FlagMainPageViewVisibleWhileMainFormIsStarting { get; set; } = true;
+
+
     private Font pageViewFont = new Font("Verdana", 9, FontStyle.Regular, GraphicsUnit.Point, 204);
 
     public Font PageViewFont
@@ -224,13 +245,18 @@ namespace TJFramework.FrameworkSettings
     {
       if (RememberMainFormLocation == false) return;
       TJStandardFrameworkSettings settings = null;
-      try { settings=Load(); }
+
+      try
+      {
+        settings = Load();
+      }
       catch (Exception ex)
       {
         string h = "Could not load framework settings.";
         //Log.Save(ex, h, MsgType.Fail);
         Ms.Error(h, ex).Pos(MsgPos.BottomRight).Delay(10).Create();
       };
+
       if (settings == null)
         try
         {
