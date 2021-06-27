@@ -34,6 +34,9 @@ namespace TJFramework.FrameworkSettings
     public bool FlagMainPageViewVisibleWhileMainFormIsStarting { get; set; } = true;
 
 
+    public int MainFormDelayMillisecondsBeforeUserFormsAreLoaded { get; set; } = 500;
+
+
     private Font pageViewFont = new Font("Verdana", 9, FontStyle.Regular, GraphicsUnit.Point, 204);
 
     public Font PageViewFont

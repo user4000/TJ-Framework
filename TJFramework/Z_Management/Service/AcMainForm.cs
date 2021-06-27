@@ -67,8 +67,8 @@ namespace TJFramework
       }
 
 
-      MainForm.Load += new EventHandler(EventMainFormLoad);
-      MainForm.Shown += new EventHandler(EventMainFormShown);
+      //MainForm.Load += new EventHandler(EventMainFormLoad);
+      //MainForm.Shown += new EventHandler(EventMainFormShown);
 
       MainForm.ResizeBegin += new EventHandler(EventMainFormResizeBegin);
       MainForm.ResizeEnd += new EventHandler(EventMainFormResizeEnd);

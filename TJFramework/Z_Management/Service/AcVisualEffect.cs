@@ -19,18 +19,16 @@ namespace TJFramework
       {
         MainForm.Opacity = ((double)currentStep) / steps;
         currentStep++;
-        Application.DoEvents();
+        //Application.DoEvents();
         if (currentStep >= steps)
         {
           timer.Stop();
           timer.Dispose();
-          MainForm.Opacity = 1;
+          MainForm.Opacity = 1;          
         }
       };
       timer.Start();
     }
-
-
 
 
     internal void VisualEffectFadeOut()
@@ -65,10 +63,13 @@ namespace TJFramework
       };
 
       timer.Start();
+
+      /*
       while (formMayBeClosed == false)
       {
-        Application.DoEvents();
+        //Application.DoEvents();
       };
+      */
     }
   }
 }

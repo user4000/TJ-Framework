@@ -29,7 +29,11 @@ namespace TJFramework
 
     internal Queue<TJChildForm> QueueChildForms { get; } = new Queue<TJChildForm>();
 
-    internal int CounterEventFormShow { get; private set; } = 0;
+
+    internal bool FlagPrepareToWorkStep1 { get; private set; } = false;
+
+    internal bool FlagPrepareToWorkStep2 { get; private set; } = false;
+
 
     private byte CountOfMessageTypes { get; } = (byte)Enum.GetNames(typeof(MsgType)).Length;
 

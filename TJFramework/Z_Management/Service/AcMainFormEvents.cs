@@ -18,12 +18,14 @@ namespace TJFramework
     {
       //PrepareToWorkStep1();
       //MainForm.Text = MainForm.Text + " < FormLoad >";
+      //RadMessageBox.Show("EventMainFormLoad");
     }
 
     internal void EventMainFormShown(object sender, EventArgs e)
     {
       //PrepareToWorkStep2();
       //MainForm.Text = MainForm.Text + " < FormShown >";
+      //RadMessageBox.Show("EventMainFormShown");      
     }
 
     private async void EventSelectedPageChanged(object sender, EventArgs e)

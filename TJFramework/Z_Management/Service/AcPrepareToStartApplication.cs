@@ -17,18 +17,17 @@ namespace TJFramework
 
     internal void PrepareToWorkStep1()
     {
+      if (FlagPrepareToWorkStep1) return; // These events must be executed only one time //
+
+      FlagPrepareToWorkStep1 = true;
+
       EventMainFormLoadBeforeAnyFormIsCreated?.Invoke();
 
-      //Application.DoEvents();
       CreateFormLog();
 
-      //Application.DoEvents();
       CreateFormExit();
 
-      //Application.DoEvents();
       EventMainFormLoadBeforeAnyCustomFormIsCreated?.Invoke();
-
-      //Application.DoEvents();
 
       CreateFormsFromQueue(); // Create all of the child forms in the Queue //
     }
@@ -36,30 +35,35 @@ namespace TJFramework
 
     internal void PrepareToWorkStep2()
     {
-      if (CounterEventFormShow > 0) return; // These events must be executed only one time //
+      if (FlagPrepareToWorkStep2) return; // These events must be executed only one time //
 
-      CounterEventFormShow++;
+      FlagPrepareToWorkStep2 = true;
 
-      //Application.DoEvents();
       EventBeforeAnyFormStartHandlerLaunched?.Invoke();
 
-      //Application.DoEvents();
       MainPageViewManager.LaunchStartHandlerOfEachChildForm();
 
       SetEventMainPageViewSelectedPageChanged();
 
-      Application.DoEvents();
       EventAfterAllFormsAreCreated?.Invoke();
 
-      Application.DoEvents();
       if (MainForm.MainPageView.Visible == false)
       {
         Pages.GotoPage(StartPageName);
         MainForm.MainPageView.Visible = true;
       }
 
-
       MainPageView.BringToFront();
+      CheckSelectedPage();
+    }
+
+    private void CheckSelectedPage()
+    {
+      // Если пользователь указал стартовую страницу, а она не является текущей, то сделаем её текущей //
+      var page = Pages.GetPageByUniqueName(StartPageName);
+      if (page == null) MainPageView.SelectedPage = null;
+      if ((page != null) && (MainPageView.SelectedPage != page))
+        MainPageView.SelectedPage = page;
     }
   }
 }
