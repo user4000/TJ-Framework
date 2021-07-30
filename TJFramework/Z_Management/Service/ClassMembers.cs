@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using TJFramework.Form;
 using TJFramework.Themes;
 using Telerik.WinControls;

@@ -53,6 +53,7 @@ namespace TJFramework
         if (MainPageView.ItemSizeMode != PageViewItemSizeMode.Individual)
           MainPageView.ItemSize = TJFrameworkManager.FrameworkSettings.PageViewItemSize;
       }
+
       return MainPageView;
     }
   }

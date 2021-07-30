@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Drawing;
 using TJFramework.Form;
-using Telerik.WinControls;
-using System.Windows.Forms;
-using Telerik.WinControls.UI;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TJFramework.ApplicationSettings;
-using static TJFramework.Logger.Manager;
-using static TJFramework.TJFrameworkManager;
 
 namespace TJFramework
 {
@@ -30,7 +21,12 @@ namespace TJFramework
 
     private async void EventSelectedPageChanged(object sender, EventArgs e)
     {
-      string PageName = MainPageView.SelectedPage.Name;
+      string PageName = string.Empty;
+
+      if ((MainPageView != null) && (MainPageView.SelectedPage != null))
+      {
+        PageName = MainPageView.SelectedPage.Name;
+      }
 
       if (EventPageChanged != null) EventPageChanged.Invoke(PageName);
 
