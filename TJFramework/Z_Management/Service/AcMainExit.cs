@@ -42,6 +42,7 @@ namespace TJFramework
       }
 
       MainPageViewManager.LaunchCloseHandlerOfEachChildForm();
+
       TJFrameworkManager.FrameworkSettings.Save();
 
       if (FuncBeforeMainFormClose == null) VisualEffectFadeOut();

@@ -104,7 +104,7 @@ namespace TJFramework.FrameworkSettings
 
 
     /*-----------------------------------------------------------------------------------------------------*/
-    private int secondsAlertAutoClose = 5;
+    private int secondsAlertAutoClose = 7;
     public int SecondsAlertAutoClose
     {
       get => secondsAlertAutoClose; 

@@ -9,5 +9,3 @@ namespace TJFramework.Extensions
     public static void ZzSetValue(this RadTextBox radTextBox, int value) => radTextBox.Text = value.ToString();
   }
 }
-
-

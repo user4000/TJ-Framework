@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using TJFramework.Tools;
 using Telerik.WinControls;
 using TJFramework.Standard;
@@ -6,7 +7,6 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using Telerik.WinControls.UI;
 using System.Collections.Concurrent;
-using System;
 
 namespace TJFramework
 {
@@ -62,7 +62,8 @@ namespace TJFramework
       CheckAlertHasIndividualSize(Alert, Message);
       CheckAlertPinned(Alert, Message.FlagPinned);
       CheckAlertCloseOnClick(Alert, Message.FlagCloseOnClick);
-
+      CheckRemovePreviousAlerts(Alert, Message.FlagRemovePreviousAlerts);
+      
       Alert.Show();
 
       //CorrectAlertPosition(Alert, Message.AlertControl);
@@ -122,6 +123,11 @@ namespace TJFramework
     private void CheckAlertPinned(TJAlert Alert, bool FlagPinned)
     {
       Alert.IsPinned = FlagPinned;
+    }
+
+    private void CheckRemovePreviousAlerts(TJAlert Alert, bool RemovePrevious)
+    {
+      if (RemovePrevious) RemoveAllAlerts();
     }
 
     private void CheckAlertPinButton(TJAlert Alert, bool FlagShowPinButton)

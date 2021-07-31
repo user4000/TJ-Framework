@@ -78,17 +78,20 @@ namespace TJFrameworkExample
       //FrameworkSettings.ConfirmExitButtonText = "Подтвердите выход";
 
       FrameworkSettings.MainFormMinimizeToTray = false;
-      FrameworkSettings.VisualEffectOnStart = true;
-      FrameworkSettings.VisualEffectOnExit = true;
+      FrameworkSettings.VisualEffectOnStart = false;
+      FrameworkSettings.VisualEffectOnExit = false;
+
+      //FrameworkSettings.FlagMainPageViewVisibleWhileMainFormIsStarting = false;
+      //FrameworkSettings.MainFormDelayMillisecondsBeforeUserFormsAreLoaded = 2000;
 
       FrameworkSettings.ValueColumnWidthPercent = 60;
       FrameworkSettings.MainPageViewReducePadding = true;
       FrameworkSettings.RememberMainFormLocation = true;
       FrameworkSettings.PageViewFont = new Font("Verdana", 10);
 
-      FrameworkSettings.FontAlertText = new Font("Verdana", 8);
-      FrameworkSettings.FontAlertCaption = new Font("Verdana", 8);
-      FrameworkSettings.MaxAlertCount = 3;
+      FrameworkSettings.FontAlertText = new Font("Verdana", 9);
+      FrameworkSettings.FontAlertCaption = new Font("Verdana", 9);
+      FrameworkSettings.MaxAlertCount = 5;
       FrameworkSettings.LimitNumberOfAlerts = true;
       FrameworkSettings.SecondsAlertAutoClose = 5;
 

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using TJFramework;
 using TJFramework.Form;
+using System.Windows.Forms;
+using System.Threading.Tasks;
 using static TJFramework.Logger.Manager;
 
 namespace TJFrameworkExample
@@ -52,7 +52,7 @@ namespace TJFrameworkExample
 
     internal void EventBeforeMainFormClose()
     {
-      Log.Save(MsgType.Debug, "EventBeforeMainFormClose() Test", "EventBeforeMainFormClose()");
+      //Log.Save(MsgType.Debug, "EventBeforeMainFormClose() Test", "EventBeforeMainFormClose()");
     }
 
 
@@ -66,30 +66,27 @@ namespace TJFrameworkExample
 
     internal void EventPropertyValueChanged(string PropertyName)
     {
-      Log.Save(MsgType.Debug, "Manager.EventPropertyValueChanged", PropertyName);
+     // Log.Save(MsgType.Debug, "Manager.EventPropertyValueChanged", PropertyName);
     }
 
     internal void EventPageChanged(string PageName)
     {
-      Log.Save(MsgType.Debug, "Manager.EventMainPageChanged", PageName);
+      //Log.Save(MsgType.Debug, "Manager.EventMainPageChanged", PageName);
 
       if (PageName == TJFrameworkManager.Service.GetFormName<FxTestOne>())
       {
-        Log.Save(MsgType.Debug, "Выбрана форма номер один.", PageName);
+        //Log.Save(MsgType.Debug, "Выбрана форма номер один.", PageName);
       }
 
       if (PageName == TJFrameworkManager.Service.GetFormName<FxTestTwo>())
       {
-        Log.Save(MsgType.Debug, "Выбрана форма номер два.", PageName);
+        //Log.Save(MsgType.Debug, "Выбрана форма номер два.", PageName);
       }
 
       if (PageName == TJFrameworkManager.Service.GetFormName<FxTestThree>()) 
       {
-        Log.Save(MsgType.Debug, "Выбрана форма номер три.", PageName);
+        //Log.Save(MsgType.Debug, "Выбрана форма номер три.", PageName);
       }
-
     }
   }
 }
-
-

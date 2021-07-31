@@ -409,7 +409,7 @@ namespace TJFramework.Form
 
     internal void TestAddManyRowsToTable()
     {
-      for (int i = 1; i < 1002; i++) AddOneRow((byte)CxRnd.Next(0, 6), $"{CountRow}", "xa xa");
+      for (int i = 1; i < 1002; i++) AddOneRow((byte)CxRnd.Next(0, 6), $"{CountRow}", $"This is a test message N{i}");
     }
 
     internal void MessageHandler(TJMessage Message)

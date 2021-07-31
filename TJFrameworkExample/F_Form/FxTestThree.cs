@@ -27,6 +27,14 @@ namespace TJFrameworkExample
       var list = Faker.Lorem.Paragraphs(1000);
       BigMessage = String.Join(", ", list.Select(o => o.ToString()));
       BxTestBigMessage.Click += EventTestBigMessage;
+      BxTestRemovePreviousAlerts.Click += EventTestRemovePreviousAlerts;
+    }
+
+    private void EventTestRemovePreviousAlerts(object sender, EventArgs e)
+    {
+      string header = "Тестирование сообщений " + Faker.Lorem.Sentence(3);
+      string message = Faker.Lorem.Sentence(15);
+      Ms.Message(header, message).Pos(MsgPos.BottomLeft).RemovePrevious().Delay(8).Debug();
     }
 
     private async void EventTestBigMessage(object sender, EventArgs e)

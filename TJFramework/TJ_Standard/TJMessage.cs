@@ -22,6 +22,7 @@ namespace TJFramework
     internal bool FlagShowPinButton { get; set; } = false;
     internal bool FlagCloseOnClick { get; set; } = false;
     internal bool FlagIcon { get; set; } = true;
+    internal bool FlagRemovePreviousAlerts { get; set; } = false;
     internal int AutoCloseDelay { get; set; } = 0;
 
     [JsonIgnore]
@@ -71,6 +72,11 @@ namespace TJFramework
     public TJMessage Table(bool SaveToTable)
     {
       FlagTable = SaveToTable; return this;
+    }
+
+    public TJMessage RemovePrevious(bool ImmediatelyClosePreviousAlerts = true)
+    {
+      FlagRemovePreviousAlerts = ImmediatelyClosePreviousAlerts; return this;
     }
 
     public TJMessage Alert(bool ShowAlert)

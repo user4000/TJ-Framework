@@ -67,7 +67,6 @@ namespace TJFramework
       CheckIsExitForm(childForm.ChildForm);
     }
 
-
     internal void CreateFormsFromQueue()
     {
       foreach (TJChildForm childForm in QueueChildForms)

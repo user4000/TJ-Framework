@@ -16,4 +16,3 @@ namespace TJFramework.Extensions.NxRadTextBoxControl
     }
   }
 }
-

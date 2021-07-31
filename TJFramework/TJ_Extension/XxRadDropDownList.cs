@@ -18,12 +18,12 @@ namespace TJFramework.Extensions
 
     public static int ConstMinWidth { get; } = 200;
 
-    public static void ZzSetStandardVisualStyle(this RadDropDownList DDList, SizingMode mode = SizingMode.None)
+    public static void ZzSetStandardVisualStyle(this RadDropDownList dropDownList, SizingMode mode = SizingMode.None)
     {
-      DDList.DropDownStyle = RadDropDownStyle.DropDownList;
-      DDList.DropDownListElement.ListElement.Font = DDList.Font;
-      DDList.DropDownSizingMode = mode;
-      DDList.PopupOpening += EventPopupOpening;
+      dropDownList.DropDownStyle = RadDropDownStyle.DropDownList;
+      dropDownList.DropDownListElement.ListElement.Font = dropDownList.Font;
+      dropDownList.DropDownSizingMode = mode;
+      dropDownList.PopupOpening += EventPopupOpening;
     }
 
     public static string ZzGetStringValueDoNotUseItDoesNotWork(this RadDropDownList DDList) => DDList.SelectedValue == null ? string.Empty : DDList.SelectedValue as string;
