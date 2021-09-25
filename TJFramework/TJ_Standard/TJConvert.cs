@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
@@ -79,9 +78,9 @@ namespace TJFramework.Standard
 
     public static string ObjectToJson(object value) => JsonConvert.SerializeObject (value, Formatting.Indented, jsonSerializerSettings);
 
-    public static StringContent ObjectToJsonStringContent(object value) => new StringContent(ObjectToJson(value), Encoding.UTF8, HttpContentJson);
+    //public static StringContent ObjectToJsonStringContent(object value) => new StringContent(ObjectToJson(value), Encoding.UTF8, HttpContentJson);
 
-    public static StringContent CreateStringContent(string json) => new StringContent(json, Encoding.UTF8, HttpContentJson);
+    //public static StringContent CreateStringContent(string json) => new StringContent(json, Encoding.UTF8, HttpContentJson);
 
     public static T JsonToObject<T>(string json) => JsonConvert.DeserializeObject<T>(json);
 
@@ -111,6 +110,8 @@ namespace TJFramework.Standard
 
     public static string ByteArrayToString(byte[] array) => System.Text.Encoding.UTF8.GetString(array, 0, array.Length);
 
+
+    /*
     public static ByteArrayContent ObjectToByteArrayContent(object MyObject)
     {
       if (MyObject == null) return null;
@@ -125,6 +126,7 @@ namespace TJFramework.Standard
       StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
       return readStream.ReadToEnd();
     }
+    */
 
     public static int ValueInRange(int Value, int RangeMin, int RangeMax) => Math.Max(RangeMin, Math.Min(RangeMax, Value));
 
