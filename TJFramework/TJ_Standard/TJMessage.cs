@@ -117,17 +117,46 @@ namespace TJFramework
 
     public void Create() => TJFrameworkManager.Ms.Create(this);
 
-    public void Debug() { MessageType = MsgType.Debug; Create(); }
+    public void Debug(int delaySeconds = 0)
+    {
+      MessageType = MsgType.Debug;
+      if (delaySeconds > 0) AutoCloseDelay = delaySeconds;
+      Create();
+    }
 
-    public void Info() { MessageType = MsgType.Info; Create(); }
+    public void Info(int delaySeconds = 0)
+    {
+      MessageType = MsgType.Info;
+      if (delaySeconds > 0) AutoCloseDelay = delaySeconds;
+      Create();
+    }
 
-    public void Ok() { MessageType = MsgType.Ok; Create(); }
+    public void Ok(int delaySeconds = 0)
+    {
+      MessageType = MsgType.Ok;
+      if (delaySeconds > 0) AutoCloseDelay = delaySeconds;
+      Create();
+    }
 
-    public void Fail() { MessageType = MsgType.Fail; Create(); }
+    public void Fail(int delaySeconds = 0)
+    {
+      MessageType = MsgType.Fail;
+      if (delaySeconds > 0) AutoCloseDelay = delaySeconds;
+      Create();
+    }
 
-    public void Warning() { MessageType = MsgType.Warning; Create(); }
+    public void Warning(int delaySeconds = 0)
+    {
+      MessageType = MsgType.Warning;
+      if (delaySeconds > 0) AutoCloseDelay = delaySeconds;
+      Create();
+    }
 
-    public void Error() { MessageType = MsgType.Error; Create(); }
-
+    public void Error(int delaySeconds = 0)
+    {
+      MessageType = MsgType.Error;
+      if (delaySeconds > 0) AutoCloseDelay = delaySeconds;
+      Create();
+    }
   }
 }

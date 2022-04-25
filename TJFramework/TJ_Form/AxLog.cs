@@ -468,6 +468,7 @@ namespace TJFramework.Form
   }
 }
 
+
 /*
     internal void AddOneRow(byte NxByte, string StHeader, string StText)
     {

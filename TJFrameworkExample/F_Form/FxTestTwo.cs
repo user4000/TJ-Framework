@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Telerik.WinControls;
-using Telerik.WinControls.UI;
 using TJFramework;
+using Telerik.WinControls.UI;
 using static TJFramework.TJFrameworkManager;
 
 namespace TJFrameworkExample
@@ -122,7 +115,6 @@ namespace TJFrameworkExample
       MyTimer.Enabled = true;
     }
 
-
     private void EventTestMessage51(object sender, EventArgs e)
     {
      // string message = "Это сообщение - из не UI-потока";
@@ -139,7 +131,6 @@ namespace TJFrameworkExample
       };
       MyTimer.Enabled = true;
     }
-
 
     private void EventTestMessage52(object sender, EventArgs e)
     {
