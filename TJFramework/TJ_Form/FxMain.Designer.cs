@@ -153,7 +153,7 @@
       this.RootElement.ApplyShapeToControl = true;
       this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
       this.Tag = "";
-      this.Text = "Application";
+      this.Text = "";
       ((System.ComponentModel.ISupportInitialize)(this.PnMainTop)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.PnMain)).EndInit();
       this.PnMain.ResumeLayout(false);

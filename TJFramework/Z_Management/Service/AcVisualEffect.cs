@@ -40,7 +40,7 @@ namespace TJFramework
       if (MainFormIsBeingDisappeared) return;
       MainFormIsBeingDisappeared = true;
 
-      bool formMayBeClosed = false;
+      //bool formMayBeClosed = false;
 
       Timer timer = new Timer() { Interval = duration / steps };
 
@@ -58,7 +58,7 @@ namespace TJFramework
         {
           timer.Stop();
           timer.Dispose();
-          formMayBeClosed = true;
+          //formMayBeClosed = true;
         }
       };
 
