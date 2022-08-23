@@ -32,13 +32,22 @@ namespace TJFramework
       MainForm = new FxMain();
       MainForm.Visible = false;
       MainForm.Text = string.Empty;
+
+
+
       //MainForm.Load += new EventHandler(EventFormLoad);
+
+
       MainForm.Shown += new EventHandler(EventMainFormShown);
+
+      MainForm.FormClosing += new FormClosingEventHandler(EventMainFormClosing);
+
 
       if (FrameworkSettings.VisualEffectOnStart)
       {
         MainForm.Opacity = 0;
       }
+
 
 
 
@@ -82,6 +91,38 @@ namespace TJFramework
 
       return MainForm;
     }
+
+
+
+
+
+
+
+    private static async void EventMainFormClosing(object sender, FormClosingEventArgs e)
+    {
+      if (Service.UserHasClickedExit) return;
+
+      if (FrameworkSettings.MainFormCloseButtonActsAsMinimizeButton)
+      {
+        MainForm.WindowState = FormWindowState.Minimized;
+        e.Cancel = true;
+        return;
+      }
+
+      if (FrameworkSettings.MainFormCloseButtonMustNotCloseForm)
+      {
+        e.Cancel = true;
+        return;
+      }    
+
+      await Service.MainExit();
+    }
+
+
+
+
+
+
 
     private static void EventFormLoad(object sender, EventArgs e)
     {

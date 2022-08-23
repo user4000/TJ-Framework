@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using TJFramework.Form;
-using Telerik.WinControls;
 using System.Windows.Forms;
-using Telerik.WinControls.UI;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TJFramework.ApplicationSettings;
-using static TJFramework.Logger.Manager;
-using static TJFramework.TJFrameworkManager;
 
 namespace TJFramework
 {
@@ -50,20 +43,25 @@ namespace TJFramework
     {
       void EventMainFormResizeBegin(object sender, EventArgs e) => MainFormIsBeingResized = true;
       void EventMainFormResizeEnd(object sender, EventArgs e) => MainFormIsBeingResized = false;
+
       void EventMainFormResize(object sender, EventArgs e)
       {
         if (!TJFrameworkManager.FrameworkSettings.MainFormMinimizeToTray) return;
         if (MainForm.WindowState == FormWindowState.Minimized)
         {
-          MainForm.Hide();
+          MainForm.ShowInTaskbar = false;
           MainForm.MyNotifyIcon.Visible = true;
+          MainForm.Hide();
         }
       }
 
       void EventNotifyIconMouseDoubleClick(object sender, MouseEventArgs e)
       {
         if (!TJFrameworkManager.FrameworkSettings.MainFormMinimizeToTray) return;
-        MainForm.Show(); MainForm.WindowState = FormWindowState.Normal; MainForm.MyNotifyIcon.Visible = false;
+        MainForm.Show();
+        MainForm.WindowState = FormWindowState.Normal;
+        MainForm.ShowInTaskbar = true;
+        //MainForm.MyNotifyIcon.Visible = false;
       }
 
 

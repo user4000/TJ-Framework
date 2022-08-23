@@ -199,6 +199,13 @@ namespace TJFramework.FrameworkSettings
     public bool VisualEffectOnExit { get; set; } = false;
 
 
+    public bool MainFormCloseButtonActsAsMinimizeButton { get; set; } = false;
+
+
+    public bool MainFormCloseButtonMustNotCloseForm { get; set; } = false;
+
+
+
     [JsonProperty]
     public Point MainFormLocation { get; set; } = default(Point);
 

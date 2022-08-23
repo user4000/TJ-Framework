@@ -15,7 +15,6 @@ namespace TJFramework
   public partial class TJService
   {
 
-
     private async void EventButtonExitClick(object sender, EventArgs e)
     {
       FormExit.BtnExit.Enabled = false;
@@ -27,6 +26,7 @@ namespace TJFramework
     internal async Task MainExit()
     {
       UserHasClickedExit = true;
+
       EventBeforeMainFormClose?.Invoke();
 
       if (FuncBeforeMainFormClose != null)
