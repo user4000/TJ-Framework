@@ -232,7 +232,7 @@ namespace TJFramework
         (
         ScreenWidth / 2 - Alert.Popup.DisplayRectangle.Width / 2,
         ScreenHeight / 2 - Alert.Popup.DisplayRectangle.Height / 2
-        );
+        );      
     }
 
     private void CheckAlertHasOffset(TJAlert Alert, Point Offset)

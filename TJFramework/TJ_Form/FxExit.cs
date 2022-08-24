@@ -13,15 +13,20 @@ namespace TJFramework.Form
     public bool ExitWithoutConfirmation { get => !BtnExit.Visible; }
 
     public void EventStartWork()
-    {  
-      if (TJFrameworkManager.FrameworkSettings.ConfirmExitButtonText.Length > 0)
+    {
+      ConfigureExitButton();
+    }
+
+    public void ConfigureExitButton()
+    {
+      if ( string.IsNullOrWhiteSpace( TJFrameworkManager.FrameworkSettings.ConfirmExitButtonText ) )
       {
-        BtnExit.Visible = true;
-        BtnExit.Text = TJFrameworkManager.FrameworkSettings.ConfirmExitButtonText;
+        BtnExit.Visible = false;
       }
       else
       {
-        BtnExit.Visible = false;
+        BtnExit.Visible = true;
+        BtnExit.Text = TJFrameworkManager.FrameworkSettings.ConfirmExitButtonText;
       }
     }
   }

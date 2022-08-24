@@ -64,6 +64,22 @@ namespace TJFramework
 
     public TJMessage Wire(Control control) => Control(control);
 
+    public TJMessage Single(Control control)
+    {
+      AlertControl = control;
+      FlagCloseOnClick = true;
+      FlagRemovePreviousAlerts = true;
+      return this;
+    }
+
+    public TJMessage Single(MsgPos position)
+    {
+      AlertPosition = position;
+      FlagCloseOnClick = true;
+      FlagRemovePreviousAlerts = true;
+      return this;
+    }
+
     public TJMessage Delay(int seconds)
     {
       AutoCloseDelay = seconds; return this;

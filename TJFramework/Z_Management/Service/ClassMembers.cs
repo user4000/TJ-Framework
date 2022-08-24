@@ -38,7 +38,8 @@ namespace TJFramework
 
     internal byte GetIndexByMessageType(MsgType type) => (byte)(((byte)type) % CountOfMessageTypes);
 
-    internal FxMain MainForm { get; private set; } = null;
+
+    public FxMain MainForm { get; private set; } = null;
 
     public FxSettings FormSettings { get; private set; } = null;
 
@@ -46,11 +47,13 @@ namespace TJFramework
 
     public FxExit FormExit { get; private set; } = null;
 
+
     public bool MainFormIsBeingResized { get; private set; } = false;
 
-    internal bool UserHasClickedExit { get; set; } = false;
+    public bool UserHasClickedExit { get; private set; } = false;
 
-    internal bool MainFormIsBeingDisappeared { get; private set; }
+    public bool MainFormIsBeingDisappeared { get; private set; }
+
 
     public Action EventBeforeAnyFormStartHandlerLaunched { get; set; } = null;
 
