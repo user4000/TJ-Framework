@@ -1,4 +1,5 @@
 ﻿using System;
+using TJFramework;
 using TJFramework.Form;
 using System.Windows.Forms;
 using System.Threading.Tasks;
@@ -11,12 +12,20 @@ namespace TJFramework
   public partial class TJService
   {
 
-    private async void EventButtonExitClick(object sender, EventArgs e)
+    private void EventButtonExitClick(object sender, EventArgs e)
     {
       FormExit.BtnExit.Enabled = false;
       FormExit.BtnExit.Visible = false;
-      await MainExit();
+      CloseMainForm();
     }
+
+
+    internal void CloseMainForm()
+    {
+      UserHasClickedExitButton = true;
+      MainForm.Close();
+    }
+
 
 
     internal async Task MainExit()
@@ -28,13 +37,19 @@ namespace TJFramework
       if (FuncBeforeMainFormClose != null)
       {
         VisualEffectFadeOut();
-        Application.DoEvents();
+
+        //Application.DoEvents();
+       
+
         MainForm.Opacity = 0;
         MainForm.ShowInTaskbar = false;
-        Application.DoEvents();
+
+        //Application.DoEvents();
+
         Task task = FuncBeforeMainFormClose();
         if (task != null) await task;
-        Application.DoEvents();
+
+        //Application.DoEvents();
       }
 
       MainPageViewManager.LaunchCloseHandlerOfEachChildForm();
@@ -42,8 +57,6 @@ namespace TJFramework
       TJFrameworkManager.FrameworkSettings.Save();
 
       if (FuncBeforeMainFormClose == null) VisualEffectFadeOut();
-
-      MainForm.Close();
     }
   }
 }

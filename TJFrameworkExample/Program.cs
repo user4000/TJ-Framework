@@ -95,6 +95,10 @@ namespace TJFrameworkExample
       FrameworkSettings.LimitNumberOfAlerts = true;
       FrameworkSettings.SecondsAlertAutoClose = 5;
 
+
+      FrameworkSettings.MainFormCloseButtonMustNotCloseForm = true;
+
+
       Action ExampleOfVisualSettingsAndEvents = () =>
       {
         FrameworkSettings.MainFormMargin = 50;

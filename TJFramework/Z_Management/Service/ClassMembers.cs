@@ -1,14 +1,10 @@
 ﻿using System;
 using TJFramework.Form;
 using TJFramework.Themes;
-using Telerik.WinControls;
-using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TJFramework.ApplicationSettings;
-using static TJFramework.Logger.Manager;
-using static TJFramework.TJFrameworkManager;
 
 namespace TJFramework
 {
@@ -29,6 +25,9 @@ namespace TJFramework
     internal Queue<TJChildForm> QueueChildForms { get; } = new Queue<TJChildForm>();
 
 
+
+
+
     internal bool FlagPrepareToWorkStep1 { get; private set; } = false;
 
     internal bool FlagPrepareToWorkStep2 { get; private set; } = false;
@@ -46,6 +45,10 @@ namespace TJFramework
     public FxLog FormLog { get; private set; } = null;
 
     public FxExit FormExit { get; private set; } = null;
+
+
+
+
 
 
     public bool MainFormIsBeingResized { get; private set; } = false;

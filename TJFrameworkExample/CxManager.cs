@@ -9,11 +9,9 @@ namespace TJFrameworkExample
 {
   internal class CxManager 
   {
-
     internal Timer TimerHideMainForm { get; } = new Timer();
 
     internal int IdUser { get; private set; } = 0;
-
 
     internal FxMain FrmMainForm { get; private set; } = null;
     internal FxTestOne FrmTextOne { get; private set; } = null;
@@ -49,19 +47,22 @@ namespace TJFrameworkExample
 
     private void EventMainFormResizeBegin(object sender, EventArgs e) => MainFormIsBeingResized = true;
 
-
     internal void EventBeforeMainFormClose()
     {
       //Log.Save(MsgType.Debug, "EventBeforeMainFormClose() Test", "EventBeforeMainFormClose()");
     }
 
 
+
     internal async Task EventBeforeMainFormCloseAsync()
     {
-      //Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Начало", "Эмуляция долго выполняющейся задачи");
+      Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Начало", "Эмуляция долго выполняющейся задачи");
       await Task.Delay(1000);
-      //Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Окончание", "Эмуляция долго выполняющейся задачи");
+      Log.Save(MsgType.Debug, "EventBeforeMainFormCloseAsync() Окончание", "Эмуляция долго выполняющейся задачи");
     }
+
+
+
 
 
     internal void EventPropertyValueChanged(string PropertyName)

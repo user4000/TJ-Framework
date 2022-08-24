@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using Telerik.WinControls.UI;
 using TJFramework;
+using System.Drawing;
+using System.ComponentModel;
+using Telerik.WinControls.UI;
 using TJFramework.ApplicationSettings;
 using static TJFramework.Logger.Manager;
 using static TJFrameworkExample.Program;
@@ -113,12 +113,14 @@ namespace TJFrameworkExample
       //ms.Message(MessageType.msg_info, property_name, "Changed!", 4,MessagePosition.pos_SC); 
       //Log.Save(MsgType.Debug, "public override void PropertyValueChanged(string PropertyName)", PropertyName);
       if (PropertyName == nameof(MainPageOrientation))
+      {
         TJFrameworkManager.Service.SetMainPageViewOrientation(MainPageOrientation);
+      }
     }
 
     public override void EventBeforeSaving()
     {
-      Password = "";
+      Password = string.Empty;
       //Log.Save(MsgType.Debug, "public override void EventBeforeSaving()", "test");
       //MessageBox.Show("EventBefore_Saving");
     }
@@ -131,5 +133,3 @@ namespace TJFrameworkExample
     }
   }
 }
-
-

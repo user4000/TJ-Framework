@@ -45,7 +45,7 @@ namespace TJFramework.FrameworkSettings
       set
       {
         bool CheckIsNull = TJFrameworkManager.Service?.MainPageView?.Font == null ? true : false;
-        bool ValueIsOK = ( (value.Size >= 8) && (value.Size <= 16) );
+        bool ValueIsOK = ( (value.Size >= 8) && (value.Size <= 20) );
 
         if (ValueIsOK)
         {
@@ -108,7 +108,7 @@ namespace TJFramework.FrameworkSettings
     public int SecondsAlertAutoClose
     {
       get => secondsAlertAutoClose; 
-      set { if ((value >= 1) && (value <= 86400)) secondsAlertAutoClose = value; }
+      set { if ((value >= 1) && (value <= 864000)) secondsAlertAutoClose = value; }
     }
     /*-----------------------------------------------------------------------------------------------------*/
     private byte valueColumnWidthPercent = 0;
@@ -174,6 +174,12 @@ namespace TJFramework.FrameworkSettings
 
     private string confirmExitButtonText = string.Empty;
 
+
+    public string ConfirmExitButtonText { get; set; }
+
+
+    /*
+     
     public string ConfirmExitButtonText
     {
       get => confirmExitButtonText;
@@ -185,6 +191,11 @@ namespace TJFramework.FrameworkSettings
           confirmExitButtonText = value;
       }
     }
+
+    */
+
+
+
 
     /*-----------------------------------------------------------------------------------------------------*/
     public bool RememberMainFormLocation { get; set; } = false;
@@ -211,6 +222,8 @@ namespace TJFramework.FrameworkSettings
 
     [JsonProperty]
     public Size MainFormSize { get; set; } = default(Size);
+
+
 
     private void GetMainFormLocation() 
     {   

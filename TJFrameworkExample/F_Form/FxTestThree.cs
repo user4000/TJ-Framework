@@ -14,7 +14,7 @@ using static TJFramework.TJFrameworkManager;
 
 namespace TJFrameworkExample
 {
-  public partial class FxTestThree : RadForm, IEventStartWork
+  public partial class FxTestThree : RadForm, IEventStartWork, IEventEndWork
   {
     private string BigMessage { get; set; } = string.Empty;
     public FxTestThree()
@@ -50,6 +50,11 @@ namespace TJFrameworkExample
         await Task.Delay(10);
       }
       Ms.Message("", "End").NoTable().Wire(BxTestBigMessage).Ok();
+    }
+
+    public void EventEndWork()
+    {
+      RadMessageBox.Show($"EventEndWork ---- {this.Name}");
     }
   }
 }

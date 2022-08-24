@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 
-
 namespace TJFramework
 {
   public partial class TJService
   {
-
-
     internal void VisualEffectFadeIn()
     {
       if (!TJFrameworkManager.FrameworkSettings.VisualEffectOnStart) return;
@@ -19,7 +16,7 @@ namespace TJFramework
       {
         MainForm.Opacity = ((double)currentStep) / steps;
         currentStep++;
-        //Application.DoEvents();
+
         if (currentStep >= steps)
         {
           timer.Stop();
@@ -30,7 +27,6 @@ namespace TJFramework
       timer.Start();
     }
 
-
     internal void VisualEffectFadeOut()
     {
       if (!TJFrameworkManager.FrameworkSettings.VisualEffectOnExit) return;
@@ -40,7 +36,6 @@ namespace TJFramework
       if (MainFormIsBeingDisappeared) return;
       MainFormIsBeingDisappeared = true;
 
-      //bool formMayBeClosed = false;
 
       Timer timer = new Timer() { Interval = duration / steps };
 
@@ -58,18 +53,10 @@ namespace TJFramework
         {
           timer.Stop();
           timer.Dispose();
-          //formMayBeClosed = true;
         }
       };
 
       timer.Start();
-
-      /*
-      while (formMayBeClosed == false)
-      {
-        //Application.DoEvents();
-      };
-      */
     }
   }
 }

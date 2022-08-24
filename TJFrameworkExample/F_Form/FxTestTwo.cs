@@ -2,10 +2,11 @@
 using TJFramework;
 using Telerik.WinControls.UI;
 using static TJFramework.TJFrameworkManager;
+using Telerik.WinControls;
 
 namespace TJFrameworkExample
 {
-  public partial class FxTestTwo : RadForm, IEventStartWork
+  public partial class FxTestTwo : RadForm, IEventStartWork, IEventEndWork
   {
     public FxTestTwo()
     {
@@ -181,6 +182,11 @@ namespace TJFrameworkExample
       message += message;
 
       Ms.Message("Тестирование. Заголовок сообщения.", message).Control(LbFormTwo).Position(MsgPos.ScreenCenter).PinButton().Delay(15).Ok();
+    }
+
+    public void EventEndWork()
+    {
+      RadMessageBox.Show($"EventEndWork ---- {this.Name}");
     }
   }
 }

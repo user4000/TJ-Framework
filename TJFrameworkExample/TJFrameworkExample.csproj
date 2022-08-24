@@ -141,13 +141,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <!--sirinie -->
     <ProjectReference Include="..\TJFramework\TJFramework.csproj">
       <Project>{9383cc68-1fd2-4af0-a09f-bc864ec09f51}</Project>
       <Name>TJFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

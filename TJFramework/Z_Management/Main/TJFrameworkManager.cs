@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Threading;
 using TJFramework.Form;
 using TJFramework.Logger;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using TJFramework.FrameworkSettings;
 using System.Text.RegularExpressions;
 
@@ -67,6 +64,7 @@ namespace TJFramework
       Example:
       settings\my_file_name.txt    =>   settings\subfolder\my_file_name.txt
       */
+
       if (SettingSubFolderName != string.Empty) FileName = FileName.Replace(@"\", @"\" + SettingSubFolderName + @"\");
       return FileName;
     }

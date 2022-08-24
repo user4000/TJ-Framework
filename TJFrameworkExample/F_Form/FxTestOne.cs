@@ -2,10 +2,11 @@
 using TJFramework;
 using Telerik.WinControls.UI;
 using static TJFramework.TJFrameworkManager ;
+using Telerik.WinControls;
 
 namespace TJFrameworkExample
 {
-  public partial class FxTestOne : RadForm, IEventStartWork
+  public partial class FxTestOne : RadForm, IEventStartWork, IEventEndWork
   {
     public FxTestOne()
     {
@@ -92,6 +93,11 @@ namespace TJFrameworkExample
         case "2": TJFrameworkManager.Pages.GotoPage<FxTestTwo>(); break;
         case "3": TJFrameworkManager.Pages.GotoPage<FxTestThree>(); break;
       }
+    }
+
+    public void EventEndWork()
+    {
+      RadMessageBox.Show($"EventEndWork ---- {this.Name}");
     }
   }
 }

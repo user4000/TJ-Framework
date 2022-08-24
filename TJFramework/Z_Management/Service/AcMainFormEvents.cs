@@ -1,5 +1,7 @@
 ﻿using System;
 using TJFramework.Form;
+using System.Threading.Tasks;
+using Telerik.WinControls;
 
 namespace TJFramework
 {
@@ -7,19 +9,15 @@ namespace TJFramework
   {
     private void EventMainFormLoad(object sender, EventArgs e)
     {
-      //PrepareToWorkStep1();
-      //MainForm.Text = MainForm.Text + " < FormLoad >";
-      //RadMessageBox.Show("EventMainFormLoad");
+
     }
 
     internal void EventMainFormShown(object sender, EventArgs e)
     {
-      //PrepareToWorkStep2();
-      //MainForm.Text = MainForm.Text + " < FormShown >";
-      //RadMessageBox.Show("EventMainFormShown");      
+  
     }
 
-    private async void EventSelectedPageChanged(object sender, EventArgs e)
+    private void EventSelectedPageChanged(object sender, EventArgs e)
     {
       string PageName = string.Empty;
 
@@ -43,7 +41,16 @@ namespace TJFramework
       //---------------------------------------------------------------------------------------------------------//
       if (CheckPage<FxExit>(PageName)) // Выход //
       {
-        if (FormExit.ExitWithoutConfirmation) await MainExit();
+        //RadMessageBox.Show($"EventSelectedPageChanged  TEST:   ConfirmExitButtonText = {TJFrameworkManager.FrameworkSettings.ConfirmExitButtonText}");
+
+        if (FormExit.ExitWithoutConfirmation)
+        {
+          CloseMainForm();
+        }
+        else
+        {
+          FormExit.EventUserVisitedThisPage();
+        }
       }
       //---------------------------------------------------------------------------------------------------------//
     }
