@@ -112,17 +112,11 @@ namespace TJFramework
       }
       // ------------------------------------------------------------------------------------------------------------- //
 
-
       if (MainFormClosingCounter > 0) return;
 
-
-
-
-
-      /*************************************/
+      /* =============================================================================================================== */
 
       e.Cancel = true;
-
 
       if ((FrameworkSettings.MainFormMinimizeBeforeClosing) && (MainForm.WindowState != FormWindowState.Minimized))
       {
@@ -130,16 +124,13 @@ namespace TJFramework
         await Task.Delay(500);
       }
 
-
       await Service.MainExit();
 
       MainFormClosingCounter++;
 
-
       MainForm.Close();
 
-
-      /*************************************/
+      /* =============================================================================================================== */
     }
 
 

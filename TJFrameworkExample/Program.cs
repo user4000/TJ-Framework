@@ -97,8 +97,6 @@ namespace TJFrameworkExample
 
 
       FrameworkSettings.MainFormCloseButtonMustNotCloseForm = true;
-
-
       FrameworkSettings.MainFormMinimizeBeforeClosing = true;
 
 
@@ -119,14 +117,14 @@ namespace TJFrameworkExample
       };
 
 
-      Func<Task> fnEventBeforeMainFormCloseAsync = async () =>
+      Func<Task> FuncEventBeforeMainFormCloseAsync = async () =>
       {
         await Manager.EventBeforeMainFormCloseAsync();
       };
 
 
       TJFrameworkManager.Service.EventBeforeMainFormClose = Manager.EventBeforeMainFormClose;
-      TJFrameworkManager.Service.FuncBeforeMainFormClose = fnEventBeforeMainFormCloseAsync;
+      TJFrameworkManager.Service.FuncBeforeMainFormClose = FuncEventBeforeMainFormCloseAsync;
 
       TJFrameworkManager.Run();
     }
