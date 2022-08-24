@@ -118,11 +118,31 @@ namespace TJFramework
 
       e.Cancel = true;
 
+
+      /*
       if ((FrameworkSettings.MainFormMinimizeBeforeClosing) && (MainForm.WindowState != FormWindowState.Minimized))
       {
         MainForm.WindowState = FormWindowState.Minimized;
         await Task.Delay(500);
       }
+      else
+      {
+        MainForm.WindowState = FormWindowState.Minimized;
+        await Task.Delay(500);
+      }
+      */
+
+      //if (MainForm.ShowInTaskbar == false) MainForm.ShowInTaskbar = true;
+
+
+      // Если не выполнить строку MainForm.WindowState = FormWindowState.Minimized; 
+      // тогда программа может выдать исключение "Ошибка при создании дескриптора окна".
+      // System.ComponentModel.Win32Exception: Error creating window handle.
+      // Причём это происходит для приложения, которое было свёрнуто в system tray и потом заново активировано двойным кликом по иконке.
+
+      MainForm.WindowState = FormWindowState.Minimized; // Очень важная строка //
+      await Task.Delay(500);
+
 
       await Service.MainExit();
 
