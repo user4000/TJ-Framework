@@ -178,6 +178,8 @@ namespace TJFramework.FrameworkSettings
     public string ConfirmExitButtonText { get; set; }
 
 
+
+
     /*
      
     public string ConfirmExitButtonText
@@ -193,6 +195,14 @@ namespace TJFramework.FrameworkSettings
     }
 
     */
+
+
+
+
+
+
+
+    public bool MainFormMinimizeBeforeClosing { get; set; } = false;
 
 
 

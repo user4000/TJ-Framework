@@ -1,5 +1,6 @@
 ﻿using System;
 using TJFramework;
+using System.Threading;
 using TJFramework.Form;
 using System.Windows.Forms;
 using System.Threading.Tasks;
@@ -38,18 +39,23 @@ namespace TJFramework
       {
         VisualEffectFadeOut();
 
-        //Application.DoEvents();
-       
+
+        /*
+        while (MainForm.Opacity > 0.0)
+        {
+          await Task.Delay(20);
+          MainForm.Opacity -= 0.1;
+        }
+        */
+
 
         MainForm.Opacity = 0;
-        MainForm.ShowInTaskbar = false;
 
-        //Application.DoEvents();
+        MainForm.ShowInTaskbar = false;
 
         Task task = FuncBeforeMainFormClose();
         if (task != null) await task;
 
-        //Application.DoEvents();
       }
 
       MainPageViewManager.LaunchCloseHandlerOfEachChildForm();

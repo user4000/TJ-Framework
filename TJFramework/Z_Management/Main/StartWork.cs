@@ -116,11 +116,29 @@ namespace TJFramework
       if (MainFormClosingCounter > 0) return;
 
 
+
+
+
       /*************************************/
+
       e.Cancel = true;
+
+
+      if ((FrameworkSettings.MainFormMinimizeBeforeClosing) && (MainForm.WindowState != FormWindowState.Minimized))
+      {
+        MainForm.WindowState = FormWindowState.Minimized;
+        await Task.Delay(500);
+      }
+
+
       await Service.MainExit();
+
       MainFormClosingCounter++;
+
+
       MainForm.Close();
+
+
       /*************************************/
     }
 

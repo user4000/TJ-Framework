@@ -97,7 +97,7 @@ namespace TJFrameworkExample
 
     public void EventEndWork()
     {
-      RadMessageBox.Show($"EventEndWork ---- {this.Name}");
+      //RadMessageBox.Show($"EventEndWork ---- {this.Name}");
     }
   }
 }

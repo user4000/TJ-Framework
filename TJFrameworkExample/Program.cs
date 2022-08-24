@@ -99,6 +99,11 @@ namespace TJFrameworkExample
       FrameworkSettings.MainFormCloseButtonMustNotCloseForm = true;
 
 
+      FrameworkSettings.MainFormMinimizeBeforeClosing = true;
+
+
+
+
       Action ExampleOfVisualSettingsAndEvents = () =>
       {
         FrameworkSettings.MainFormMargin = 50;

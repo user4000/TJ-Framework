@@ -30,6 +30,7 @@ namespace TJFramework
     internal void VisualEffectFadeOut()
     {
       if (!TJFrameworkManager.FrameworkSettings.VisualEffectOnExit) return;
+
       int duration = 250; // milliseconds //
       int steps = 25;
 
