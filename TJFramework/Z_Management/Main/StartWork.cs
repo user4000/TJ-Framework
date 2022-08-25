@@ -90,12 +90,48 @@ namespace TJFramework
     }
 
 
+    private static void MainFormRefresh()
+    {
+      MainForm.Refresh();
+      if (MainForm.MainPageView.Visible) MainForm.MainPageView.Refresh();
+    }
+
+    private static async void EventMainFormShown(object sender, EventArgs e)
+    {
+      MainFormRefresh();
+
+      MainForm.Shown -= EventMainFormShown;
+
+
+      if (FrameworkSettings.VisualEffectOnStart)
+      {
+        MainForm.Visible = true;
+        Service.VisualEffectFadeIn();
+      }
+
+
+      int delayMs = FrameworkSettings.MainFormDelayMillisecondsBeforeUserFormsAreLoaded;
+      if ((delayMs >= 10) && (delayMs <= 60000))
+      {
+        await Task.Delay(delayMs);
+      }
+
+
+      MainFormRefresh();
+
+      Service.PrepareToWorkStep1();
+
+      MainFormRefresh();
+
+      Service.PrepareToWorkStep2();
+
+      MainFormRefresh();
+    }
 
 
 
 
-
-    private static async void EventMainFormClosing(object sender, FormClosingEventArgs e)
+    private static async void EventMainFormClosing_OLD_VERSION(object sender, FormClosingEventArgs e) 
     {
       // ------------------------------------------------------------------------------------------------------------- //
       if ((FrameworkSettings.MainFormCloseButtonActsAsMinimizeButton) && (UserHasClickedExitButton == false))
@@ -116,7 +152,7 @@ namespace TJFramework
 
       /* =============================================================================================================== */
 
-      e.Cancel = true;
+      e.Cancel = true; // С первого раза этот метод не закроет форму. А со второго захода закроет. И в этом нам поможет переменная MainFormClosingCounter //
 
 
       /*
@@ -140,6 +176,7 @@ namespace TJFramework
       // System.ComponentModel.Win32Exception: Error creating window handle.
       // Причём это происходит для приложения, которое было свёрнуто в system tray и потом заново активировано двойным кликом по иконке.
 
+
       MainForm.WindowState = FormWindowState.Minimized; // Очень важная строка //
       await Task.Delay(500);
 
@@ -154,53 +191,41 @@ namespace TJFramework
     }
 
 
-
-
-
-
-
-    private static void MainFormRefresh()
+    private static async void EventMainFormClosing(object sender, FormClosingEventArgs e) // Событие: поступил сигнал "Закрыть главную форму приложения" //
     {
-      MainForm.Refresh();
-      if (MainForm.MainPageView.Visible) MainForm.MainPageView.Refresh();
-    }
-
-
-
-
-    private static async void EventMainFormShown(object sender, EventArgs e)
-    {
-      MainFormRefresh();
-      MainForm.Shown -= EventMainFormShown;
-
-
-
-      if (FrameworkSettings.VisualEffectOnStart)
+      // ------------------------------------------------------------------------------------------------------------- //
+      if ((FrameworkSettings.MainFormCloseButtonActsAsMinimizeButton) && (UserHasClickedExitButton == false))
       {
-        MainForm.Visible = true;
-        Service.VisualEffectFadeIn();
+        MainForm.WindowState = FormWindowState.Minimized;
+        e.Cancel = true;
+        return;
       }
-
-
-
-      int delayMs = FrameworkSettings.MainFormDelayMillisecondsBeforeUserFormsAreLoaded;
-      if ((delayMs >= 10) && (delayMs <= 60000))
+      // ------------------------------------------------------------------------------------------------------------- //
+      if ((FrameworkSettings.MainFormCloseButtonMustNotCloseForm) && (UserHasClickedExitButton == false))
       {
-        await Task.Delay(delayMs);
+        e.Cancel = true;
+        return;
       }
+      // ------------------------------------------------------------------------------------------------------------- //
+
+      if (MainFormClosingCounter > 0) return;
+
+      /* =============================================================================================================== */
+
+      e.Cancel = true; // С первого раза этот метод не закроет форму. А со второго захода закроет. И в этом нам поможет переменная MainFormClosingCounter //
 
 
+      MainForm.WindowState = FormWindowState.Minimized; // Очень важная строка //
+      await Task.Delay(500);
 
 
-      MainFormRefresh();
+      await Service.MainExit();
 
-      Service.PrepareToWorkStep1();
+      MainFormClosingCounter++;
 
-      MainFormRefresh();
+      MainForm.Close();
 
-      Service.PrepareToWorkStep2();
-
-      MainFormRefresh();
+      /* =============================================================================================================== */
     }
   }
 }

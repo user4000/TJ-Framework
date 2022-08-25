@@ -27,9 +27,7 @@ namespace TJFramework
       MainForm.Close();
     }
 
-
-
-    internal async Task MainExit()
+    private async Task MainExit_OLD_VERSION()
     {
       UserHasClickedExit = true;
 
@@ -37,8 +35,8 @@ namespace TJFramework
 
       if (FuncBeforeMainFormClose != null)
       {
-        VisualEffectFadeOut();
 
+        // VisualEffectFadeOut();
 
         /*
         while (MainForm.Opacity > 0.0)
@@ -48,10 +46,18 @@ namespace TJFramework
         }
         */
 
+        //MainForm.Opacity = 0;
 
-        MainForm.Opacity = 0;
+        /*
+        try
+        {
+          MainForm.ShowInTaskbar = false;
+        }
+        catch
+        {
 
-        MainForm.ShowInTaskbar = false;
+        }
+        */
 
         Task task = FuncBeforeMainFormClose();
         if (task != null) await task;
@@ -62,7 +68,24 @@ namespace TJFramework
 
       TJFrameworkManager.FrameworkSettings.Save();
 
-      if (FuncBeforeMainFormClose == null) VisualEffectFadeOut();
+      // if (FuncBeforeMainFormClose == null) VisualEffectFadeOut();
+    }
+
+    internal async Task MainExit()
+    {
+      UserHasClickedExit = true;
+
+      EventBeforeMainFormClose?.Invoke();
+
+      if (FuncBeforeMainFormClose != null)
+      {
+        Task task = FuncBeforeMainFormClose();
+        if (task != null) await task;
+      }
+
+      MainPageViewManager.LaunchCloseHandlerOfEachChildForm();
+
+      TJFrameworkManager.FrameworkSettings.Save();
     }
   }
 }
