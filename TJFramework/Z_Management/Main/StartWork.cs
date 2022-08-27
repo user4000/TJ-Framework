@@ -131,64 +131,6 @@ namespace TJFramework
 
 
 
-    private static async void EventMainFormClosing_OLD_VERSION(object sender, FormClosingEventArgs e) 
-    {
-      // ------------------------------------------------------------------------------------------------------------- //
-      if ((FrameworkSettings.MainFormCloseButtonActsAsMinimizeButton) && (UserHasClickedExitButton == false))
-      {
-        MainForm.WindowState = FormWindowState.Minimized;
-        e.Cancel = true;
-        return;
-      }
-      // ------------------------------------------------------------------------------------------------------------- //
-      if ((FrameworkSettings.MainFormCloseButtonMustNotCloseForm) && (UserHasClickedExitButton == false))
-      {
-        e.Cancel = true;
-        return;
-      }
-      // ------------------------------------------------------------------------------------------------------------- //
-
-      if (MainFormClosingCounter > 0) return;
-
-      /* =============================================================================================================== */
-
-      e.Cancel = true; // С первого раза этот метод не закроет форму. А со второго захода закроет. И в этом нам поможет переменная MainFormClosingCounter //
-
-
-      /*
-      if ((FrameworkSettings.MainFormMinimizeBeforeClosing) && (MainForm.WindowState != FormWindowState.Minimized))
-      {
-        MainForm.WindowState = FormWindowState.Minimized;
-        await Task.Delay(500);
-      }
-      else
-      {
-        MainForm.WindowState = FormWindowState.Minimized;
-        await Task.Delay(500);
-      }
-      */
-
-      //if (MainForm.ShowInTaskbar == false) MainForm.ShowInTaskbar = true;
-
-
-      // Если не выполнить строку MainForm.WindowState = FormWindowState.Minimized; 
-      // тогда программа может выдать исключение "Ошибка при создании дескриптора окна".
-      // System.ComponentModel.Win32Exception: Error creating window handle.
-      // Причём это происходит для приложения, которое было свёрнуто в system tray и потом заново активировано двойным кликом по иконке.
-
-
-      MainForm.WindowState = FormWindowState.Minimized; // Очень важная строка //
-      await Task.Delay(500);
-
-
-      await Service.MainExit();
-
-      MainFormClosingCounter++;
-
-      MainForm.Close();
-
-      /* =============================================================================================================== */
-    }
 
 
     private static async void EventMainFormClosing(object sender, FormClosingEventArgs e) // Событие: поступил сигнал "Закрыть главную форму приложения" //
@@ -208,15 +150,26 @@ namespace TJFramework
       }
       // ------------------------------------------------------------------------------------------------------------- //
 
-      if (MainFormClosingCounter > 0) return;
+      if (MainFormClosingCounter > 0) return; // Со второго захода выполнится инструкция return в данном условии //
 
       /* =============================================================================================================== */
+
+      // Всё, что ниже этого комментария выполнится только 1 раз с первого захода. 
+      // А со второго захода в этом методе выполнение до этой строки уже не дойдёт (см. инструкцию return выше).
 
       e.Cancel = true; // С первого раза этот метод не закроет форму. А со второго захода закроет. И в этом нам поможет переменная MainFormClosingCounter //
 
 
+
+      TJFrameworkManager.FrameworkSettings.Save();      // Записать местоположение формы и её размер нужно до того, как мы её минимизируем //
       MainForm.WindowState = FormWindowState.Minimized; // Очень важная строка //
       await Task.Delay(500);
+
+      // Если не выполнить строку MainForm.WindowState = FormWindowState.Minimized; 
+      // тогда программа может выдать исключение "Ошибка при создании дескриптора окна".
+      // System.ComponentModel.Win32Exception: Error creating window handle.
+      // Причём это происходит для приложения, которое было свёрнуто в system tray и потом заново активировано двойным кликом по иконке.
+
 
 
       await Service.MainExit();
